@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   pf_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 20:15:54 by amak              #+#    #+#             */
-/*   Updated: 2022/11/24 01:54:52 by amak             ###   ########.fr       */
+/*   Created: 2022/11/09 20:04:25 by amak              #+#    #+#             */
+/*   Updated: 2022/11/24 22:53:26 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	pf_putstr(char *s)
 {
-	if (n == -2147483648)
-		write(fd, "-2147483648", 11);
-	else if (n < 0)
+	int		pos;
+
+	pos = 0;
+	while (s[pos])
 	{
-		write(fd, "-", 1);
-		ft_putnbr_fd(-n, fd);
+		write(1, &s[pos], 1);
+		pos++;
 	}
-	else if (n < 10)
-		ft_putchar_fd(n + 48, fd);
-	else
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
+	return (ft_strlen(s));
 }

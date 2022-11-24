@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 22:00:19 by amak              #+#    #+#             */
-/*   Updated: 2022/11/24 02:48:11 by amak             ###   ########.fr       */
+/*   Created: 2022/10/24 19:55:10 by amak              #+#    #+#             */
+/*   Updated: 2022/11/24 19:22:26 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+size_t	ft_strlen(const char *str)
+{
+	int	pos;
 
-# include <stdio.h>
-
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putnbr_fd(int n, int fd);
-int		ft_printf(const char *input, ...);
-
-#endif
+	pos = 0;
+	while (str[pos] != '\0')
+		pos++;
+	return (pos);
+}

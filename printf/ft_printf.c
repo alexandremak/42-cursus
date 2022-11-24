@@ -6,32 +6,34 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 21:59:28 by amak              #+#    #+#             */
-/*   Updated: 2022/11/24 02:59:40 by amak             ###   ########.fr       */
+/*   Updated: 2022/11/24 23:32:10 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-static	void	print_condition(char c, va_list args)
-{
+static	int	print_condition(char c, va_list args)
+{	
 	if (c == '%')
-		write(1, "%", 1);
+		return (write(1, "%", 1));
+	if (c == ' ')
+		return (write(1, " ", 1));
 	else if (c == 'c')
-		ft_putchar_fd(va_arg(args, int), 1);
+		return (pf_putchar((unsigned char)va_arg(args, int)));
 	else if (c == 's')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		return (pf_putstr(va_arg(args, char *)));
 	// else if (c == 'p')
 	// 	(va_arg(args, void *);
 	else if (c == 'd' || c == 'i')
-		ft_putnbr_fd(va_arg(args, int), 1);
+		return (pf_putnbrbase(va_arg(args, int), "0123456789"));
 	else if (c == 'u')
-		ft_putnbr_fd(va_arg(args, unsigned int), 1);
-	// else if (c == 'x')
-	// 	ft_putnbr_fd(va_arg(args, int), 1);
-	// else if (c == 'X')
-	// 	ft_putnbr_fd(va_arg(args, int), 1);
+		return (pf_putnbr_un(va_arg(args, int), "0123456789"));
+	else if (c == 'x')
+		return (pf_putnbr_un(va_arg(args, int), "0123456789abcdef"));
+	else if (c == 'X')
+		return (pf_putnbr_un(va_arg(args, int), "0123456789ABCDEF"));
 	else
-		return;
+		return (0);
 }
 
 int	ft_printf(const char *input, ...)
@@ -47,7 +49,7 @@ int	ft_printf(const char *input, ...)
 	{
 		if (input[pos] == '%')
 		{
-			print_condition(input[pos + 1], arguments);
+			result += print_condition(input[pos + 1], arguments);
 			pos++;
 		}
 		else

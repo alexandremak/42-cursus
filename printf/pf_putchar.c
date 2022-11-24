@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   pf_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 20:04:25 by amak              #+#    #+#             */
-/*   Updated: 2022/11/24 02:46:16 by amak             ###   ########.fr       */
+/*   Created: 2022/11/09 20:00:32 by amak              #+#    #+#             */
+/*   Updated: 2022/11/24 22:48:19 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	pf_putchar(char c)
 {
-	int		pos;
-
-	pos = 0;
-	while (s[pos])
-	{
-		write(fd, &s[pos], 1);
-		pos++;
-	}
+	return (write(1, &c, 1));
 }

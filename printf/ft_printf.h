@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 20:00:32 by amak              #+#    #+#             */
-/*   Updated: 2022/11/24 01:55:30 by amak             ###   ########.fr       */
+/*   Created: 2022/11/23 22:00:19 by amak              #+#    #+#             */
+/*   Updated: 2022/11/24 23:23:58 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
+# include <unistd.h>
+# include <stdarg.h>
+
+# include <stdio.h>
+
+int		pf_putchar(char c);
+int		pf_putstr(char *s);
+size_t	ft_strlen(const char *str);
+int		pf_putnbrbase(int n, char *base);
+long	pf_putnbr_un(long n, char *base);
+int		ft_printf(const char *input, ...);
+
+#endif
