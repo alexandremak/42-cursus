@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 22:06:02 by amak              #+#    #+#             */
-/*   Updated: 2022/11/24 01:28:56 by amak             ###   ########.fr       */
+/*   Created: 2022/11/09 20:15:54 by amak              #+#    #+#             */
+/*   Updated: 2022/11/23 22:13:57 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libftprintf.h"
-
-int	main(void)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	count;
-	int	*pointer;
-	
-	count = 234;
-	pointer = &count;
-	printf("ola %-0d", 234);
-	return (0);
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else if (n < 0)
+	{
+		write(fd, "-", 1);
+		ft_putnbr_fd(-n, fd);
+	}
+	else if (n < 10)
+		ft_putchar_fd(n + 48, fd);
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
 }

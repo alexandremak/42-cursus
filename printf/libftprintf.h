@@ -1,10 +1,22 @@
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/23 22:00:19 by amak              #+#    #+#             */
+/*   Updated: 2022/11/23 22:14:07 by amak             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
 # include <unistd.h>
 # include <stdarg.h>
 
-size_t	ft_strlen(const char *str);
-int		ft_printf(const char *, ...);
+void	ft_putnbr_fd(int n, int fd);
+int		ft_printf(const char *input, ...);
 
 #endif
