@@ -12,25 +12,17 @@
 
 #include "ft_printf.h"
 
-long	pf_putnbr_un(long n, char *base)
+unsigned int	pf_putnbr_un(unsigned int n, char *base, unsigned int size_b)
 {
 	long	result;
 
 	result = 0;
-	if (((int)ft_strlen(base) > 1))
+	if (n >= size_b)
 	{
-		if (n < 0)
-		{
-			n += 4294967296;
-			result += pf_putnbr_un(n, base);
-		}
-		else if (n >= (int)ft_strlen(base))
-		{
-			result += pf_putnbr_un(n / (int)ft_strlen(base), base);
-			result += pf_putnbr_un(n % (int)ft_strlen(base), base);
-		}
-		else
-			result += write (1, &base[n], 1);
+		result += pf_putnbr_un(n / size_b, base, size_b);
+		result += pf_putnbr_un(n % size_b, base, size_b);
 	}
+	else
+		result += write (1, &base[n], 1);
 	return (result);
 }
