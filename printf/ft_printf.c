@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 21:59:28 by amak              #+#    #+#             */
-/*   Updated: 2022/11/24 23:32:10 by amak             ###   ########.fr       */
+/*   Updated: 2022/11/25 01:23:14 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,19 @@ static	int	print_condition(char c, va_list args)
 		return (pf_putchar((unsigned char)va_arg(args, int)));
 	else if (c == 's')
 		return (pf_putstr(va_arg(args, char *)));
-	// else if (c == 'p')
-	// 	(va_arg(args, void *);
+	else if (c == 'p')
+	{
+		write (1, "0x", 2);
+		return ((pf_putnbr_ptr((long)va_arg(args, void *), LHEX)) + 2);
+	}
 	else if (c == 'd' || c == 'i')
-		return (pf_putnbrbase(va_arg(args, int), "0123456789"));
+		return (pf_putnbrbase(va_arg(args, int), DEC));
 	else if (c == 'u')
-		return (pf_putnbr_un(va_arg(args, int), "0123456789"));
+		return (pf_putnbr_un(va_arg(args, int), DEC));
 	else if (c == 'x')
-		return (pf_putnbr_un(va_arg(args, int), "0123456789abcdef"));
+		return (pf_putnbr_un(va_arg(args, int), LHEX));
 	else if (c == 'X')
-		return (pf_putnbr_un(va_arg(args, int), "0123456789ABCDEF"));
+		return (pf_putnbr_un(va_arg(args, int), UHEX));
 	else
 		return (0);
 }
