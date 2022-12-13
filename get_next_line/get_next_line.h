@@ -6,17 +6,24 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:38:26 by amak              #+#    #+#             */
-/*   Updated: 2022/12/04 18:45:31 by amak             ###   ########.fr       */
+/*   Updated: 2022/12/12 19:26:55 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# ifndef BUFFER_SIZE
+
+#  define BUFFER_SIZE 42
+
+# endif
+
 # include <unistd.h>
 
+size_t	ft_strlen(char *str);
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_strline(char *str);
 char	*get_next_line(int fd);
-
-# define BUFFER_SIZE = 42;
 
 #endif
