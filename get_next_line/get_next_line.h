@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:38:26 by amak              #+#    #+#             */
-/*   Updated: 2022/12/12 19:26:55 by amak             ###   ########.fr       */
+/*   Updated: 2022/12/15 02:08:29 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # endif
 
 # include <unistd.h>
+# include <stdlib.h>
 
 size_t	ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);

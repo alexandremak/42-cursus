@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 18:50:47 by amak              #+#    #+#             */
-/*   Updated: 2022/12/12 20:42:56 by amak             ###   ########.fr       */
+/*   Updated: 2022/12/15 02:14:54 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	pos = 0;
 	result = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!result)
+	if (!result || )
 		return (NULL);
 	while (*s1)
 	{
@@ -48,15 +48,4 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	result[pos] = '\0';
 	return (result);
-}
-
-int	ft_strline(char *str)
-{
-	while (*str)
-	{
-		if (str == '\n' || str == '\0')
-			return (1);
-		str++;
-	}
-	return (0);
 }
