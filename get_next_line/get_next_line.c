@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:38:32 by amak              #+#    #+#             */
-/*   Updated: 2022/12/15 02:13:15 by amak             ###   ########.fr       */
+/*   Updated: 2022/12/15 22:52:40 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
-	size_t		index;
 	char		*result;
-	size_t		res_i;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -27,34 +25,16 @@ char	*get_next_line(int fd)
 	{
 		line = ft_strjoin(line, buffer);
 		buffer[0] = '\0';
-		index = 0;
-		result = 0;
-		while (index < ft_strlen(line))
+		if (is_line(line, '\n'))
 		{
-			if (line[index] != '\n')
-				index++;
-			else
-			{
-				result = (char *)malloc(sizeof(char) * (index + 1));
-				if (!result)
-					return (NULL);
-				result[index + 1] = '\0';
-				res_i = 0;
-				while (res_i <= index)
-				{
-					result[res_i] = line[res_i];
-					res_i++;
-				}
-				res_i = 0;
-				while (index < ft_strlen(line))
-				{
-					buffer[res_i] = line[index];
-					res_i++;
-					index++;
-				}
-				return (result);
-			}
+			result = line_out(line, '\n');
+			left_shift(line, buffer, '\n');
+			free(line);
+			return (result);
 		}
 	}
+	line = ft_strjoin(line, buffer);
+	result = line_out(line, '\0');
+	free (line);
 	return (result);
 }
