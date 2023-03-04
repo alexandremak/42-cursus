@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:38:26 by amak              #+#    #+#             */
-/*   Updated: 2023/01/15 02:02:11 by amak             ###   ########.fr       */
+/*   Updated: 2023/01/14 19:09:21 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-size_t	ft_strlen_gnl(char *str);
-char	*ft_strjoin_gnl(char *line, char *buffer);
-char	*search_line(int flag, char *buffer, int fd);
+size_t	ft_strlen(char *str);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(char *s, int c);
 char	*get_next_line(int fd);
 
 #endif

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:38:32 by amak              #+#    #+#             */
-/*   Updated: 2023/01/15 06:38:42 by amak             ###   ########.fr       */
+/*   Updated: 2023/01/15 06:35:06 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*search_line(int flag, char *buffer, int fd)
 {
@@ -42,7 +42,7 @@ char	*search_line(int flag, char *buffer, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[FOPEN_MAX][BUFFER_SIZE + 1];
 	char		*line;
 	int			flag;
 	int			i;
@@ -52,13 +52,15 @@ char	*get_next_line(int fd)
 	i = 0;
 	if ((read(fd, 0, 0) < 0) || BUFFER_SIZE < 1)
 	{
-		while (buffer[i])
+		if (fd < 0 || fd > FOPEN_MAX)
+			return (NULL);
+		while (buffer[fd][i])
 		{
-			buffer[i] = '\0';
+			buffer[fd][i] = 0;
 			i++;
 		}
 		return (NULL);
 	}
-	line = search_line(flag, buffer, fd);
+	line = search_line(flag, buffer[fd], fd);
 	return (line);
 }
