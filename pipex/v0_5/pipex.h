@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:59:56 by amak              #+#    #+#             */
-/*   Updated: 2023/03/17 00:09:48 by amak             ###   ########.fr       */
+/*   Updated: 2023/03/18 18:54:36 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 
+/* STRUCTURES: */
 typedef struct s_pipex
 {
 	int		tube[2];
@@ -44,10 +45,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 /* UTILS FUNCTIONS: */
+void	file_error(char *filename);
 char	**find_paths(char **envp);
+int		init_pipex(char **argv, char **envp, t_pipex *pipex);
+
 
 /* PROCESSES FUNCTION: */
 void	fist_process(t_pipex *pipex, char **argv, char **envp);
+int		init_pipex(char **argv, char **envp, t_pipex *pipex);
 void	second_process(t_pipex *pipex, char **argv, char **envp);
 
 #endif

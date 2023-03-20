@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:40:26 by amak              #+#    #+#             */
-/*   Updated: 2023/03/17 00:09:36 by amak             ###   ########.fr       */
+/*   Updated: 2023/03/19 21:22:26 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*find_cmdpath(char **paths, char *cmd)
 	{
 		output = ft_strjoin(*paths, "/");
 		output = ft_strjoin(output, cmd);
-		// printf("%s\n", output);
 		if (access(output, F_OK) == 0)
 			return (output);
 		paths++;
@@ -31,26 +30,29 @@ char	*find_cmdpath(char **paths, char *cmd)
 
 void	fist_process(t_pipex *pipex, char **argv, char **envp)
 {
-	// int	teste;
-
+	printf("infile fd: %d\n", pipex->infile);
+	// dup2(pipex->infile, 0);
+	// dup2(pipex->tube[1], 1);
+	// close(pipex->tube[0]);
 	pipex->cmd_flags = ft_split(argv[2], ' ');
-	// while (*pipex->cmd_flags)
-	// {
-	// 	printf("%s\n", *pipex->cmd_flags);
-	// 	pipex->cmd_flags++;
-	// }
 	pipex->cmd = pipex->cmd_flags[0];
-	// printf("comand: %s\n", pipex->cmd);
 	pipex->cmd_path = find_cmdpath(pipex->paths, pipex->cmd);
-	// printf("path: %s\n", pipex->cmd_path);
-	execve(pipex->cmd_path, pipex->cmd_flags, envp);
-	// printf("%d", teste);
+	printf("%s\n", pipex->cmd_path);
+	if (*pipex->cmd_path)
+		execve(pipex->cmd_path, pipex->cmd_flags, envp);
+	else
+		printf("command not found: %s\n", pipex->cmd);
 }
 
 void	second_process(t_pipex *pipex, char **argv, char **envp)
 {
+	// printf("outfile fd: %d\n", pipex->outfile);
+	dup2(pipex->tube[0], 0);
+	close(pipex->tube[1]);
+	// dup2(pipex->outfile, 1);
 	pipex->cmd_flags = ft_split(argv[3], ' ');
 	pipex->cmd = pipex->cmd_flags[0];
 	pipex->cmd_path = find_cmdpath(pipex->paths, pipex->cmd);
+	printf("-->aqui\n");
 	execve(pipex->cmd_path, pipex->cmd_flags, envp);
 }
