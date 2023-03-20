@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:59:56 by amak              #+#    #+#             */
-/*   Updated: 2023/03/18 18:54:36 by amak             ###   ########.fr       */
+/*   Updated: 2023/03/20 23:03:22 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@
 typedef struct s_pipex
 {
 	int		tube[2];
+	char	**paths;
 	int		infile;
 	int		outfile;
-	char	**paths;
-	char	*cmd_path;
 	char	**cmd_flags;
+	char	*cmd_path;
 	char	*cmd;
 
 }	t_pipex;
 
-/* BASIC FUNCTIONS: */
+/* LIBFT FUNCTIONS: */
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	ft_putstr(char *s);
@@ -46,13 +46,14 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 /* UTILS FUNCTIONS: */
 void	file_error(char *filename);
+void	error_exit(char *error_msg);
 char	**find_paths(char **envp);
-int		init_pipex(char **argv, char **envp, t_pipex *pipex);
-
+void	init_pipex(char **argv, char **envp, t_pipex *pipex);
+void	free_pipex(t_pipex *pipex);
 
 /* PROCESSES FUNCTION: */
-void	fist_process(t_pipex *pipex, char **argv, char **envp);
-int		init_pipex(char **argv, char **envp, t_pipex *pipex);
+char	*find_cmdpath(char **paths, char *cmd);
+void	first_process(t_pipex *pipex, char **argv, char **envp);
 void	second_process(t_pipex *pipex, char **argv, char **envp);
 
 #endif
