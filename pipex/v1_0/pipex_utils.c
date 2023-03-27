@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:25:30 by amak              #+#    #+#             */
-/*   Updated: 2023/03/24 22:46:11 by amak             ###   ########.fr       */
+/*   Updated: 2023/03/27 20:01:52 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	error_return(char *error_msg)
 	perror(error_msg);
 	return (1);
 }
-
 
 /*	Finds and returns array of directories from "PATH=" string from envp */
 char	**find_directories(char **envp)
@@ -49,4 +48,11 @@ void	free_pipex(t_pipex *pipex)
 		i++;
 	}
 	free(pipex->directories);
+}
+
+/*	Closes pipe array variable from struct pipex */
+void	close_pipe(t_pipex *pipex)
+{
+	close(pipex->pipe_tube[0]);
+	close(pipex->pipe_tube[1]);
 }

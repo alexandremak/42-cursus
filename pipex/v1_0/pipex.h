@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:59:56 by amak              #+#    #+#             */
-/*   Updated: 2023/03/24 22:45:50 by amak             ###   ########.fr       */
+/*   Updated: 2023/03/27 20:31:25 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <errno.h>
 
 /* STRUCTURES: */
 typedef struct s_pipex
@@ -29,8 +30,6 @@ typedef struct s_pipex
 	char	**cmd_flags;
 	char	*cmd;
 	char	*cmd_path;
-
-
 }	t_pipex;
 
 /* LIBFT FUNCTIONS: */
@@ -49,6 +48,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		error_exit(char *error_msg);
 char	**find_directories(char **envp);
 void	free_pipex(t_pipex *pipex);
+void	close_pipe(t_pipex *pipex);
 
 /* PROCESSES FUNCTION: */
 char	*find_cmdpath(char **paths, char *cmd);
