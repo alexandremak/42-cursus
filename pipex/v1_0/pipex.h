@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:59:56 by amak              #+#    #+#             */
-/*   Updated: 2023/03/22 21:02:41 by amak             ###   ########.fr       */
+/*   Updated: 2023/03/24 22:45:50 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@
 /* STRUCTURES: */
 typedef struct s_pipex
 {
-	int		tube[2];
-	char	**paths;
+	int		pipe_tube[2];
 	int		infile;
 	int		outfile;
+	char	**directories;
 	char	**cmd_flags;
-	char	*cmd_path;
 	char	*cmd;
+	char	*cmd_path;
+
 
 }	t_pipex;
 
@@ -45,14 +46,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 /* UTILS FUNCTIONS: */
-void	error_exit(char *error_msg);
-char	**find_paths(char **envp);
-void	init_pipex(char **argv, char **envp, t_pipex *pipex);
+int		error_exit(char *error_msg);
+char	**find_directories(char **envp);
 void	free_pipex(t_pipex *pipex);
 
 /* PROCESSES FUNCTION: */
 char	*find_cmdpath(char **paths, char *cmd);
-void	first_process(t_pipex *pipex, char **argv, char **envp);
-void	second_process(t_pipex *pipex, char **argv, char **envp);
+void	first_process(t_pipex pipex, char **argv, char **envp);
+void	second_process(t_pipex pipex, char **argv, char **envp);
 
 #endif
