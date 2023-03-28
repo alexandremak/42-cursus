@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:25:30 by amak              #+#    #+#             */
-/*   Updated: 2023/03/27 20:02:49 by amak             ###   ########.fr       */
+/*   Updated: 2023/03/29 00:19:52 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	main(int argc, char **argv, char **envp)
 	id_process[0] = fork();
 	if (id_process[0] == 0)
 		first_process(pipex, argv, envp);
+	waitpid(id_process[0], 0, 0);
 	id_process[1] = fork();
 	if (id_process[1] == 0)
 		second_process(pipex, argv, envp);
 	close_pipe(&pipex);
-	waitpid(id_process[0], 0, 0);
 	waitpid(id_process[1], 0, 0);
 	free_pipex(&pipex);
 	return (0);
