@@ -6,17 +6,17 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:25:30 by amak              #+#    #+#             */
-/*   Updated: 2023/03/27 20:01:52 by amak             ###   ########.fr       */
+/*   Updated: 2023/03/30 23:16:43 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 /*	Shows error with "perror" function and exits process */
-int	error_return(char *error_msg)
+void	error_exit(char *error_msg)
 {
 	perror(error_msg);
-	return (1);
+	exit (1);
 }
 
 /*	Finds and returns array of directories from "PATH=" string from envp */
