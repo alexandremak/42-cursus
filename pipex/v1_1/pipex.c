@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:25:30 by amak              #+#    #+#             */
-/*   Updated: 2023/04/03 23:21:59 by amak             ###   ########.fr       */
+/*   Updated: 2023/04/05 21:12:51 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_pipex		pipex;
 	int			id_process[2];
-	int			i;
 
-	i = 0;
 	if (argc != 5)
 		error_exit("Not enough arguments!");
 	if (pipe(pipex.pipe_tube) < 0)
@@ -32,23 +30,16 @@ int	main(int argc, char **argv, char **envp)
 	pipex.directories = find_directories(envp);
 	id_process[0] = fork();
 	if (id_process[0] == 0)
-	{
 		first_process(pipex, argv, envp);
-		free_pipex(&pipex);
-	}
 	id_process[1] = fork();
 	if (id_process[1] == 0)
-	{
 		second_process(pipex, argv, envp);
-		free_pipex(&pipex);
-	}
 	close_pipe(&pipex);
 	waitpid(id_process[0], 0, 0);
-	write(2, "\n FIRST END \n", 13);
 	waitpid(id_process[1], 0, 0);
-	write(2, "\n SECOND END \n", 14);
 	free_pipex(&pipex);
 	return (0);
 }
 
-// valgrind --leak-check=full --show-leak-kinds=all ./pipex "/dev/urandom" "alex" "head -1" outfile
+// valgrind --leak-check=full --show-leak-kinds=all 
+// ./pipex "/dev/urandom" "alex" "head -1" outfile

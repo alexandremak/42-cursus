@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:40:26 by amak              #+#    #+#             */
-/*   Updated: 2023/04/03 23:20:54 by amak             ###   ########.fr       */
+/*   Updated: 2023/04/05 20:48:53 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,29 +59,31 @@ void	free_process(t_pipex *pipex)
 	the process */
 void	first_process(t_pipex pipex, char **argv, char **envp)
 {
-	write(2, "\n FIRST BEGIN \n", 14);
+	if (ft_strncmp(argv[2], "", 1) == 0)
+	{
+		write(2, ": command not found\n", 20);
+		free_process(&pipex);
+		free_pipex(&pipex);
+		exit(-1);
+	}
 	dup2(pipex.infile, STDIN_FILENO);
 	dup2(pipex.pipe_tube[1], STDOUT_FILENO);
 	close(pipex.pipe_tube[0]);
-	if (ft_strncmp(argv[2], "", 1) == 0)
-		write(2, ": command not found\n", 20);
+	pipex.cmd_flags = ft_split(argv[2], ' ');
+	pipex.cmd = ft_strdup(pipex.cmd_flags[0]);
+	if (access(pipex.cmd, F_OK) == 0)
+		pipex.cmd_path = ft_strdup(pipex.cmd);
 	else
+		pipex.cmd_path = find_cmdpath(pipex.directories, pipex.cmd);
+	if (!pipex.cmd_path)
 	{
-		pipex.cmd_flags = ft_split(argv[2], ' ');
-		pipex.cmd = ft_strdup(pipex.cmd_flags[0]);
-		if (access(pipex.cmd, F_OK) == 0)
-			pipex.cmd_path = ft_strdup(pipex.cmd);
-		else
-			pipex.cmd_path = find_cmdpath(pipex.directories, pipex.cmd);
-		if (!pipex.cmd_path)
-		{
-			write(2, pipex.cmd, ft_strlen(pipex.cmd));
-			write(2, ": command not found\n", 20);
-			free_process(&pipex);
-		}
-		else
-			execve(pipex.cmd_path, pipex.cmd_flags, envp);
+		write(2, pipex.cmd, ft_strlen(pipex.cmd));
+		write(2, ": command not found\n", 20);
+		free_process(&pipex);
+		free_pipex(&pipex);
+		exit(-1);
 	}
+	execve(pipex.cmd_path, pipex.cmd_flags, envp);
 }
 
 /*	Second child process: redirects file descriptor: STDIN to pipe[0] (read)
@@ -92,27 +94,29 @@ void	first_process(t_pipex pipex, char **argv, char **envp)
 	the process */
 void	second_process(t_pipex pipex, char **argv, char **envp)
 {
-	write(2, "\n SECOND BEGIN \n", 16);
+	if (ft_strncmp(argv[3], "", 1) == 0)
+	{
+		write(2, ": command not found\n", 20);
+		free_process(&pipex);
+		free_pipex(&pipex);
+		exit(-1);
+	}
 	dup2(pipex.pipe_tube[0], STDIN_FILENO);
 	dup2(pipex.outfile, STDOUT_FILENO);
 	close(pipex.pipe_tube[1]);
-	if (ft_strncmp(argv[3], "", 1) == 0)
-		write(2, ": command not found\n", 20);
+	pipex.cmd_flags = ft_split(argv[3], ' ');
+	pipex.cmd = ft_strdup(pipex.cmd_flags[0]);
+	if (access(pipex.cmd, F_OK) == 0)
+		pipex.cmd_path = ft_strdup(pipex.cmd);
 	else
+		pipex.cmd_path = find_cmdpath(pipex.directories, pipex.cmd);
+	if (!pipex.cmd_path)
 	{
-		pipex.cmd_flags = ft_split(argv[3], ' ');
-		pipex.cmd = ft_strdup(pipex.cmd_flags[0]);
-		if (access(pipex.cmd, F_OK) == 0)
-			pipex.cmd_path = ft_strdup(pipex.cmd);
-		else
-			pipex.cmd_path = find_cmdpath(pipex.directories, pipex.cmd);
-		if (!pipex.cmd_path)
-		{
-			write(2, pipex.cmd, ft_strlen(pipex.cmd));
-			write(2, ": command not found\n", 20);
-			free_process(&pipex);
-		}
-		else
-			execve(pipex.cmd_path, pipex.cmd_flags, envp);
+		write(2, pipex.cmd, ft_strlen(pipex.cmd));
+		write(2, ": command not found\n", 20);
+		free_process(&pipex);
+		free_pipex(&pipex);
+		exit(-1);
 	}
+	execve(pipex.cmd_path, pipex.cmd_flags, envp);
 }

@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:47:24 by amak              #+#    #+#             */
-/*   Updated: 2023/04/03 22:56:16 by amak             ###   ########.fr       */
+/*   Updated: 2023/04/05 20:44:29 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char	**ft_split(char const *s, char c)
 	pos = 0;
 	pos_res = 0;
 	result = (char **)ft_calloc(nr_words(s, c) + 1, sizeof(char *));
-	printf("\n -------------------> SPLIT DIRECTORIES %i \n", nr_words(s, c));
 	if (result == NULL)
 		return (NULL);
 	while (s[pos])
