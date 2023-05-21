@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:04:36 by amak              #+#    #+#             */
-/*   Updated: 2023/05/18 23:32:36 by amak             ###   ########.fr       */
+/*   Updated: 2023/05/20 23:26:18 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,13 @@ void	rev_rotate_double(t_list **a_lst, t_list **b_lst);
 /* UTILS FUNCTIONS: */
 int		check_numbers(char *str);
 
-
-
 /* SORT FUNCTION: */
 void	sort_three(t_list **lst);
+void	sort_five(t_list **a_lst, t_list **b_lst);
+
+/* SORT UTILS: */
+int		min_value(t_list **lst);
+int		min_position(t_list **lst);
+void	move_min(t_list **lst, char c);
 
 #endif

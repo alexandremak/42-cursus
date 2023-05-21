@@ -6,7 +6,7 @@
 #    By: amak <amak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 17:44:56 by amak              #+#    #+#              #
-#    Updated: 2023/05/18 22:31:11 by amak             ###   ########.fr        #
+#    Updated: 2023/05/20 21:14:25 by amak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SOURCES = 	main.c \
 			ft_strlcpy.c \
 			ft_strlen.c \
 			move_operations.c \
-			sort_functions.c \
+			sort_small.c \
+			sort_utils.c \
 			utilities.c
 
 OBJECTS = $(SOURCES:.c=.o)
