@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 17:45:16 by amak              #+#    #+#             */
-/*   Updated: 2023/05/20 23:58:10 by amak             ###   ########.fr       */
+/*   Updated: 2023/05/21 16:44:57 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	print_lst(t_list *lst)
 {
 	t_list	*aux;
-	
+
 	aux = lst;
 	while (aux != NULL)
 	{
@@ -30,7 +30,7 @@ int main (int argc, char **argv)
 	t_list *root_a;
 	t_list *root_b;
 	int		i;
-	
+
 	root_a = NULL;
 	root_b = NULL;
 	i = 1;
@@ -81,7 +81,7 @@ int main (int argc, char **argv)
 	else if (argc > 4 && argc <= 6)
 		sort_five(&root_a, &root_b);
 	else
-		printf("working...");
+		sort_big(&root_a, &root_b);
 
 	// printf("\n**********\n\n");
 	// printf("Small value: %d\n", min_value(&root_a));	
@@ -90,8 +90,8 @@ int main (int argc, char **argv)
 	
 	// move_min(&root_a, 'a');
 	
-	// printf("Final Stack A: \n");
-	// print_lst(root_a);
+	printf("Final Stack A: \n");
+	print_lst(root_a);
 	// printf("---\n");
 	// printf("Final Stack B: \n");
 	// print_lst(root_b);
@@ -105,7 +105,7 @@ int main (int argc, char **argv)
 // int main (int argc, char **argv)
 // {
 // 	int i;
-	
+
 // 	i = 1;
 // 	if (argc == 1)
 // 	{

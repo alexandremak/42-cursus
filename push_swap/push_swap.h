@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:04:36 by amak              #+#    #+#             */
-/*   Updated: 2023/05/20 23:26:18 by amak             ###   ########.fr       */
+/*   Updated: 2023/05/21 15:44:35 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		check_numbers(char *str);
 /* SORT FUNCTION: */
 void	sort_three(t_list **lst);
 void	sort_five(t_list **a_lst, t_list **b_lst);
+void	sort_big(t_list **a_lst, t_list **b_lst);
 
 /* SORT UTILS: */
 int		min_value(t_list **lst);

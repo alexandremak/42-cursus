@@ -6,41 +6,42 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:14:11 by amak              #+#    #+#             */
-/*   Updated: 2023/05/20 23:41:36 by amak             ###   ########.fr       */
+/*   Updated: 2023/05/21 16:55:07 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static int	biggest(int a, int b, int c)
+{
+	if (a > b && a > c)
+		return (a);
+	else if (a > b && c > a)
+		return (c);
+	else if (a < b && c < b)
+		return (b);
+	else if (a < b && b < c)
+		return (c);
+	else
+		return (b);
+}
+
 void	sort_three(t_list **lst)
 {
-	t_list *aux;
-	
-	aux = *lst;
-	if (aux->value > aux->next->value)
-	{
-		if (aux->next->value > aux->next->next->value)
-		{
-			swap_single(lst, 'a');
-			rev_rotate_single(lst, 'a');	
-		} 
-		else
-			if (aux->value > aux->next->next->value)
-				rev_rotate_single(lst, 'a');
-			else
-				swap_single(lst, 'a');
-	}
-	else
-		if (aux->next->value > aux->next->next->value)
-		{
-			if (aux->value > aux->next->next->value)
-				rev_rotate_single(lst, 'a');
-			else
-			{
-				swap_single(lst, 'a');
-				rotate_single(lst, 'a');
-			}
-		}
+	int	first;
+	int	second;
+	int	third;
+
+	first = (*lst)->value;
+	second = (*lst)->next->value;
+	third = (*lst)->next->next->value;
+
+	if (first == biggest(first, second, third))
+		rotate_single(lst, 'a');
+	else if (second == biggest(first, second, third))
+		rev_rotate_single(lst, 'a');
+	if ((*lst)->value > (*lst)->next->value)
+		swap_single(lst, 'a');
 }
 
 void	sort_five(t_list **a_lst, t_list **b_lst)
