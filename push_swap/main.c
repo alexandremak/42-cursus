@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 17:45:16 by amak              #+#    #+#             */
-/*   Updated: 2023/05/18 23:44:54 by amak             ###   ########.fr       */
+/*   Updated: 2023/05/20 23:58:10 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ int main (int argc, char **argv)
 			i++;
 		}
 	
-	printf("Initial Stack A: \n");
-	print_lst(root_a);
-	printf("---\n");
-	printf("Initial Stack B: \n");
-	print_lst(root_b);
+	// printf("Initial Stack A: \n");
+	// print_lst(root_a);
+	// printf("---\n");
+	// printf("Initial Stack B: \n");
+	// print_lst(root_b);
 	
-	printf("\n**********\n\n");
+	// printf("\n**********\n\n");
 	
 	// swap_single(&root_a);
 	// swap_double(&root_a, &root_b);
@@ -70,18 +70,32 @@ int main (int argc, char **argv)
 	// push_single(&root_a, &root_b);
 	// rev_rotate_double(&root_a, &root_b);
 
-	while (ft_lstsize(root_a) > 3)
-		push_single(&root_a, &root_b, 'c');
+	// while (ft_lstsize(root_a) > 3)
+	// 	push_single(&root_a, &root_b, 'c');
 	
-	printf("Movements: \n");
-	sort_three(&root_a);
-	printf("\n");
+	// printf("Movements: \n");
+	if (argc == 3)
+		move_min(&root_a, 'a');
+	else if (argc == 4)
+		sort_three(&root_a);
+	else if (argc > 4 && argc <= 6)
+		sort_five(&root_a, &root_b);
+	else
+		printf("working...");
+
+	// printf("\n**********\n\n");
+	// printf("Small value: %d\n", min_value(&root_a));	
+	// printf("Position smal: %d\n", min_position(&root_a));
+	// printf("\n**********\n\n");
 	
-	printf("Final Stack A: \n");
-	print_lst(root_a);
-	printf("---\n");
-	printf("Final Stack B: \n");
-	print_lst(root_b);
+	// move_min(&root_a, 'a');
+	
+	// printf("Final Stack A: \n");
+	// print_lst(root_a);
+	// printf("---\n");
+	// printf("Final Stack B: \n");
+	// print_lst(root_b);
+		
 }
 
 
