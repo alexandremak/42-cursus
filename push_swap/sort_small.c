@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 22:14:11 by amak              #+#    #+#             */
-/*   Updated: 2023/05/21 16:55:07 by amak             ###   ########.fr       */
+/*   Updated: 2023/05/21 18:31:25 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	sort_three(t_list **lst)
 	first = (*lst)->value;
 	second = (*lst)->next->value;
 	third = (*lst)->next->next->value;
-
 	if (first == biggest(first, second, third))
 		rotate_single(lst, 'a');
 	else if (second == biggest(first, second, third))

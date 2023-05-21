@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:09:29 by amak              #+#    #+#             */
-/*   Updated: 2023/05/18 23:41:06 by amak             ###   ########.fr       */
+/*   Updated: 2023/05/21 18:30:55 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 	nothing if there is only one or no elements. */
 void	swap_single(t_list **lst, char c)
 {
-	t_list *aux_root;
-	t_list *aux_moving;
+	t_list	*aux_root;
+	t_list	*aux_moving;
 
 	aux_root = *lst;
 	aux_moving = *lst;
@@ -27,9 +27,9 @@ void	swap_single(t_list **lst, char c)
 		aux_moving = aux_moving->next;
 		aux_root->next = aux_moving->next;
 		aux_moving->next = aux_root;
-		if (c =='a')
+		if (c == 'a')
 			write(1, "sa\n", 3);
-		if (c =='b')
+		if (c == 'b')
 			write(1, "sb\n", 3);
 	}
 }
@@ -46,16 +46,16 @@ void	swap_double(t_list **a_lst, t_list **b_lst)
 	the top of a/b. Do nothing if b is empty. */
 void	push_single(t_list **lst_out, t_list **lst_in, char c)
 {
-	t_list *aux;
+	t_list	*aux;
 
 	aux = *lst_out;
 	if (*lst_out != NULL)
 	{
 		*lst_out = aux->next;
 		ft_lstadd_front(lst_in, aux);
-		if (c =='a')
+		if (c == 'a')
 			write(1, "pa\n", 3);
-		if (c =='b')
+		if (c == 'b')
 			write(1, "pb\n", 3);
 	}
 }
@@ -64,8 +64,8 @@ void	push_single(t_list **lst_out, t_list **lst_in, char c)
 	element becomes the last one. */
 void	rotate_single(t_list **lst, char c)
 {
-	t_list *aux_root;
-	t_list *aux_moving;
+	t_list	*aux_root;
+	t_list	*aux_moving;
 
 	aux_root = *lst;
 	if (aux_root != NULL && aux_root->next != NULL)
@@ -74,9 +74,9 @@ void	rotate_single(t_list **lst, char c)
 		*lst = aux_root->next;
 		aux_moving->next = aux_root;
 		aux_root->next = NULL;
-		if (c =='a')
+		if (c == 'a')
 			write(1, "ra\n", 3);
-		if (c =='b')
+		if (c == 'b')
 			write(1, "rb\n", 3);
 	}
 }
@@ -93,8 +93,8 @@ void	rotate_double(t_list **a_lst, t_list **b_lst)
 The last element becomes the first one. */
 void	rev_rotate_single(t_list **lst, char c)
 {
-	t_list *aux_root;
-	t_list *aux_moving;
+	t_list	*aux_root;
+	t_list	*aux_moving;
 
 	aux_root = *lst;
 	aux_moving = *lst;
@@ -105,9 +105,9 @@ void	rev_rotate_single(t_list **lst, char c)
 		*lst = aux_moving->next;
 		aux_moving->next->next = aux_root;
 		aux_moving->next = NULL;
-		if (c =='a')
+		if (c == 'a')
 			write(1, "rra\n", 4);
-		if (c =='b')
+		if (c == 'b')
 			write(1, "rrb\n", 4);
 	}
 }

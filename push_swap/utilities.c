@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:07:17 by amak              #+#    #+#             */
-/*   Updated: 2023/05/09 21:17:05 by amak             ###   ########.fr       */
+/*   Updated: 2023/05/21 18:31:53 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_numbers(char *str)
 	int		y;
 	int		result;
 	char	**array;
-	
+
 	i = 0;
 	result = 0;
 	array = ft_split(str, ' ');
