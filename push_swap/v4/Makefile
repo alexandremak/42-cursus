@@ -6,7 +6,7 @@
 #    By: amak <amak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 17:44:56 by amak              #+#    #+#              #
-#    Updated: 2023/09/06 04:27:15 by amak             ###   ########.fr        #
+#    Updated: 2023/09/08 02:24:16 by amak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SOURCES = 	main.c \
 			moves_swap.c \
 			moves_push.c \
 			moves_rotate.c \
+			moves_revrotate.c \
 			validate_input.c \
 			validate_list.c \
 			sort_utils.c \

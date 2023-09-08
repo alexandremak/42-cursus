@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:04:36 by amak              #+#    #+#             */
-/*   Updated: 2023/09/06 04:39:44 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/08 02:23:33 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ void		pb(t_list **stack_out, t_list **stack_in);
 void		ra(t_list **stack);
 void		rb(t_list **stack);
 void		rr(t_list **stack_a, t_list **stack_b);
+
+/* REVERSE ROTATE MOVES FUNCTIONS: */
 void		rra(t_list **stack);
 void		rrb(t_list **stack);
 void		rrr(t_list **stack_a, t_list **stack_b);
 
 /* VALIDATE INPUT FUNCTIONS: */
 int			is_valid_number(char *str);
-int 		is_valid_input(int count, char **values);
+int			is_valid_input(int count, char **values);
 void		load_input(int argc, char **argv, t_list **list);
 
 /* VALIDATE LIST FUNCTIONS: */
@@ -78,7 +80,6 @@ int			min_value(t_list **stack);
 int			value_position(t_list **stack, int value);
 void		move_to_top(t_list **stack, int value);
 void		fill_position(t_list **stack);
-
 
 /* SORT FUNCTIONS: */
 void		sort_three(t_list **stack);

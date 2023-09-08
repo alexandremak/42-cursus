@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 23:03:32 by amak              #+#    #+#             */
-/*   Updated: 2023/09/06 03:09:23 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/08 02:43:18 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*	Check if a string is a valid number (with or without signal + or - in the
 	begining and returns true or false value */
-int		is_valid_number(char *str)
+int	is_valid_number(char *str)
 {
 	while (*str == ' ' || *str == '\t')
 		str++;
@@ -36,10 +36,10 @@ int		is_valid_number(char *str)
 
 /*	Check if the parameters are valid integer numbers and returns true or false
 	value */
-int 	is_valid_input(int count, char **values)
+int	is_valid_input(int count, char **values)
 {
-	int	i;
-	char **split_arg;
+	int		i;
+	char	**split_arg;
 
 	i = 1;
 	while (i < count)
@@ -50,7 +50,7 @@ int 	is_valid_input(int count, char **values)
 			if (!is_valid_number(*split_arg))
 				return (0);
 			if (ft_atoi(*split_arg) < INT_MIN || ft_atoi(*split_arg) > INT_MAX)
-				return(0);
+				return (0);
 			split_arg++;
 		}
 		i++;
@@ -64,9 +64,9 @@ int 	is_valid_input(int count, char **values)
 	back of the stack */
 void	load_input(int argc, char **argv, t_list **stack)
 {
-	int i;
-	char **split_arg;
-	
+	int		i;
+	char	**split_arg;
+
 	i = 1;
 	if (!is_valid_input(argc, argv))
 	{
@@ -85,5 +85,5 @@ void	load_input(int argc, char **argv, t_list **stack)
 			}
 			i++;
 		}
-	}	
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 01:14:15 by amak              #+#    #+#             */
-/*   Updated: 2023/09/06 03:58:48 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/08 02:15:09 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	free_list(t_list **stack)
 
 /*	Check if there are duplicate values in a list and returns true or false
 	value */
-int		is_duplicate(t_list **stack)
+int	is_duplicate(t_list **stack)
 {
 	t_list	*base;
 	t_list	*aux;
@@ -50,10 +50,10 @@ int		is_duplicate(t_list **stack)
 
 /*	Check if the values in a list are sorted from the smallest at the top to
 	the biggest at the bottom and returns true or false value */
-int		is_sorted(t_list **stack)
+int	is_sorted(t_list **stack)
 {
 	t_list	*aux;
-	
+
 	aux = *stack;
 	while (aux && aux->next)
 	{
@@ -69,7 +69,7 @@ void	check_list(t_list **stack)
 {
 	if (is_duplicate(stack))
 	{
-		write(2, "Error\n",6);
+		write(2, "Error\n", 6);
 		free_list(stack);
 	}
 	if (is_sorted(stack))

@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:47:15 by amak              #+#    #+#             */
-/*   Updated: 2023/09/06 01:11:10 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/08 02:09:39 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ long long	ft_atoi(const char *nptr)
 	while (ft_isspace(nptr[pos]))
 		pos++;
 	if (nptr[pos] == '-' || nptr[pos] == '+')
-	{	
+	{
 		if (nptr[pos] == '-' )
 			sign = -1;
 		pos++;

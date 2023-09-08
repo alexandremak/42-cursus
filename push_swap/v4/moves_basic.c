@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 21:09:29 by amak              #+#    #+#             */
-/*   Updated: 2023/09/06 06:09:06 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/08 02:09:28 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,10 @@ void	rotate(t_list **stack)
 	if (aux_root != NULL && aux_root->next != NULL)
 	{
 		aux_moving = ft_lstlast(*stack);
-		*stack= aux_root->next;
+		*stack = aux_root->next;
 		aux_moving->next = aux_root;
 		aux_root->next = NULL;
 	}
-
 }
 
 /*	REVERSE ROTATE: Shift down all elements of stack a by 1. The last element
