@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:40:26 by amak              #+#    #+#             */
-/*   Updated: 2023/04/11 23:16:42 by amak             ###   ########.fr       */
+/*   Updated: 2023/05/02 18:35:04 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	first_process(t_pipex pipex, char **argv, char **envp)
 	execve(pipex.cmd_path, pipex.cmd_flags, envp);
 }
 
-/*	Second child process: 
+/*	Second child process: 	close_pipe(&pipex);
 	- checks if second command value is NULL
 	- redirects the file descriptors: STDIN to pipe[0] - (read) and STDOUT to
 	  outfile, closes pipe[1] - (write)
