@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 18:04:36 by amak              #+#    #+#             */
-/*   Updated: 2023/09/08 02:54:25 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/08 03:34:08 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		ft_lstadd_front(t_list **lst, t_list *new);
 t_list		*ft_lstnew(int content);
 int			ft_lstsize(t_list *lst);
 char		**ft_split(char const *s, char c);
+void		free_split(char **splitted);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlen(const char *str);
 
@@ -47,7 +48,7 @@ void		rev_rotate(t_list **stack);
 /* SWAP MOVES FUNCTIONS: */
 void		sa(t_list **stack);
 void		sb(t_list **stack);
-void		ss(t_list **stack_a, t_list **sv4 copytack_b);
+void		ss(t_list **stack_a, t_list **stack_b);
 
 /* PUSH MOVES FUNCTIONS: */
 void		pa(t_list **stack_out, t_list **stack_in);
