@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 22:53:35 by amak              #+#    #+#             */
-/*   Updated: 2023/09/08 02:16:48 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/08 04:23:49 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,6 @@ int	main(int argc, char **argv)
 		sort_radix(&stack_a, &stack_b);
 	check_list(&stack_a);
 }
+
+// valgrind --leak-check=full --show-leak-kinds=all
+// ./push_swap 5 4 3 10 8 7 6 41 31 "55 98 324 -12"

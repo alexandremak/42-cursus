@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 22:08:49 by amak              #+#    #+#             */
-/*   Updated: 2023/09/08 03:42:01 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/08 04:11:39 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	**ft_split(char const *s, char c)
 void	free_split(char **splitted)
 {
 	char	**aux;
-	
+
 	aux = splitted;
 	while (*aux)
 	{

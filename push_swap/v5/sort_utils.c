@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 03:28:15 by amak              #+#    #+#             */
-/*   Updated: 2023/09/08 02:13:56 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/08 04:19:16 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	min_value(t_list **stack)
 }
 
 /*	Returns the position of a value in the list, as the first position is 1,
-	if the value doen't exists return 0 */
+	if the value doesn't exists return 0 */
 int	value_position(t_list **stack, int value)
 {
 	t_list	*aux;
@@ -70,6 +70,9 @@ int	value_position(t_list **stack, int value)
 	return (position);
 }
 
+/*	Moves to the top of the stack a specified value using rotate if the
+	position is in the first half or reverse rotate if it is in the
+	second half */
 void	move_to_top(t_list **stack, int value)
 {
 	int	middle;
@@ -95,6 +98,8 @@ void	move_to_top(t_list **stack, int value)
 	}
 }
 
+/*	Calculate and fills the index position for all the elements in the stack,
+	using it for radix sorting instead of the value */
 void	fill_position(t_list **stack)
 {
 	t_list	*base;
