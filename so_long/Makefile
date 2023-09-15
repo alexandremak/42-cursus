@@ -6,7 +6,7 @@
 #    By: amak <amak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/13 20:47:10 by amak              #+#    #+#              #
-#    Updated: 2023/09/13 23:22:37 by amak             ###   ########.fr        #
+#    Updated: 2023/09/15 19:51:43 by amak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SOURCES = 	main.c \
 			ft_strlen.c \
 			get_next_line.c \
 			get_next_line_utils.c \
-			validate_mapfile.c
+			validate_file.c \
+			validate_map.c
 			
 OBJECTS = $(SOURCES:.c=.o)
 
