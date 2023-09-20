@@ -6,25 +6,103 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:31:32 by amak              #+#    #+#             */
-/*   Updated: 2023/09/15 19:19:27 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/20 03:17:04 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	validate_dimension(int fd)
+void	load_map(t_map *map, int fd, int count_line)
 {
-	char	*x_axis;
-	int		x_length;
+	char *line;
 
-	x_axis = get_next_line(fd);
-	if (!x_axis)
+	line = get_next_line(fd);
+	if (line)
+		load_map(map, fd, count_line + 1);
+	else if (count_line > 0)
+	{
+		map->height = count_line;
+		map->map_mtrx = malloc(sizeof(char *) * (count_line + 1));
+	}
+	if (map->map_mtrx)
+		map->map_mtrx[count_line] = line;
+}
+
+int 	is_rectangle(t_map *map)
+{
+	size_t	width;
+	int		i;
+	
+	i = 0;
+	while(map->map_mtrx[i])
+	{
+		width = ft_strlen(map->map_mtrx[i]);
+		if (i < (map->height - 1))
+		{
+			if (width != ft_strlen(map->map_mtrx[0]))
+				return (0);
+		}
+		else
+		{
+			if (width != (ft_strlen(map->map_mtrx[0]) - 1))
+				return (0);
+		}
+		i++;
+	}
+	map->width = ft_strlen(map->map_mtrx[0]) - 1;
+	return (1);
+}
+
+int		wall_ok(t_map *map)
+{
+	int	i;
+	int	p_height;
+	int	p_width;
+
+	i = 0;
+	p_height = map->height - 1;
+	p_width = map->width - 1;
+	while (map->map_mtrx[0][i] && i <= p_width)
+	{
+		if(map->map_mtrx[0][i] != '1')
+			return (0);
+		i++;
+	}
+	i = 1;
+	while (i <= (p_height - 1))
+	{
+		if ((map->map_mtrx[i][0] != '1') || (map->map_mtrx[i][p_width] != '1'))
+			return (0);
+		i++;
+	}
+	i = 0;
+	while (map->map_mtrx[p_height][i] && i <= p_width)
+	{
+		if(map->map_mtrx[p_height][i] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	validate_dimension(int fd, t_map *map)
+{
+	
+	load_map(map, fd, 0);
+	if (!map->map_mtrx[0])
 	{
 		write(2, "Error: First line of Map file is empty!\n", 40);
+		return;
 	}
-	else
+	if (!is_rectangle(map))
 	{
-		x_length = ft_strlen(x_axis);
-		printf("length = %d \n", x_length);
+		write(2, "Error: Map dimension is not a rectangle!\n", 41);
+		return;
 	}
+	if (!wall_ok(map))
+	{
+		write(2, "Error: Map is not closed/surrounded by walls!\n", 46);
+		return;
+	}
+	write(1, "OK\n", 3);
 }

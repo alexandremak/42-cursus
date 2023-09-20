@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 22:57:27 by amak              #+#    #+#             */
-/*   Updated: 2023/09/15 19:18:39 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/19 21:01:24 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	map_ext_ok(char *filepath)
 	return (0);
 }
 
-void	check_file(int argc, char **argv)
+void	check_file(int argc, char **argv, int *fd)
 {
 	if (argc == 1)
 	{
@@ -38,18 +38,10 @@ void	check_file(int argc, char **argv)
 		write(2, "Error: Map is not a *.ber file!\n", 32);
 		exit(1);
 	}
-}
-
-int	open_file(char *pathfile)
-{
-	int	map_fd;
-
-	map_fd = open(pathfile, O_RDONLY);
-	if (map_fd < 0)
+	*fd = open(argv[1], O_RDONLY);
+	if (*fd < 0)
 	{
 		write(2, "Error: Map file doesn't exists!\n", 32);
 		exit(1);
 	}
-	else
-		return (map_fd);
 }
