@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 20:45:22 by amak              #+#    #+#             */
-/*   Updated: 2023/09/22 12:34:16 by amak             ###   ########.fr       */
+/*   Created: 2023/09/22 15:51:08 by amak              #+#    #+#             */
+/*   Updated: 2023/09/22 16:06:51 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void	init_window(t_windows *window)
 {
-	int	file_fd;
-	static t_windows	windows;
-	// int	i;
-	
-	// i = 0;
-	check_file(argc, argv, &file_fd);
-	check_map(file_fd, &windows.map);
-	valid_path_exit(&windows.map);
-	// while (windows.map.map_mtrx[i])
-	// {
-	// 	printf("%s", windows.map.map_mtrx[i]);
-	// 	i++;
-	// }
-	close(file_fd);
-	return (0);
+	window->mlx_ptr = mlx_init();
+	window->win_ptr = mlx_new_window(window->mlx_ptr, window->map.height * PIXELS, window->map.width * PIXELS, "Stones & Lava: Dungeon Escape");
 }

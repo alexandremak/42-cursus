@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:31:32 by amak              #+#    #+#             */
-/*   Updated: 2023/09/20 03:17:04 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/22 12:31:21 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,32 @@ int		wall_ok(t_map *map)
 	return (1);
 }
 
-void	validate_dimension(int fd, t_map *map)
+int	valid_components(t_map *map)
+{
+	int	x;
+	int y;
+
+	y = 0;
+	while (y < map->height)
+	{
+		x = 0;
+		while (x < map->width)
+		{
+			
+			if (!valid_char(map->map_mtrx[y][x]))
+				return (0);
+			if (!load_component(map, y, x))
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	if (!must_contain(map))
+		return (0);
+	return (1);
+}
+
+void	check_map(int fd, t_map *map)
 {
 	
 	load_map(map, fd, 0);
@@ -104,5 +129,9 @@ void	validate_dimension(int fd, t_map *map)
 		write(2, "Error: Map is not closed/surrounded by walls!\n", 46);
 		return;
 	}
-	write(1, "OK\n", 3);
+	if (!valid_components(map))
+	{
+		write(2, "Error: Map with incorrect components!\n", 38);
+		return;
+	}
 }

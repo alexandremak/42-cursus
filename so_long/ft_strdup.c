@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 20:45:22 by amak              #+#    #+#             */
-/*   Updated: 2023/09/22 12:34:16 by amak             ###   ########.fr       */
+/*   Created: 2022/11/02 23:34:06 by amak              #+#    #+#             */
+/*   Updated: 2023/09/22 10:58:06 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *s)
 {
-	int	file_fd;
-	static t_windows	windows;
-	// int	i;
-	
-	// i = 0;
-	check_file(argc, argv, &file_fd);
-	check_map(file_fd, &windows.map);
-	valid_path_exit(&windows.map);
-	// while (windows.map.map_mtrx[i])
-	// {
-	// 	printf("%s", windows.map.map_mtrx[i]);
-	// 	i++;
-	// }
-	close(file_fd);
-	return (0);
+	int		lenth;
+	int		pos;
+	char	*pnt;
+
+	lenth = ft_strlen((char *)s);
+	pnt = (char *)malloc(lenth + 1);
+	if (pnt == NULL)
+		return (NULL);
+	pos = 0;
+	while (s[pos] != '\0')
+	{
+		pnt[pos] = s[pos];
+		pos++;
+	}
+	pnt[pos] = '\0';
+	return (pnt);
 }
