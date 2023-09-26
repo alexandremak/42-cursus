@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 08:40:08 by amak              #+#    #+#             */
-/*   Updated: 2023/09/25 23:02:01 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/26 22:33:27 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ void	valid_path_exit(t_windows *window)
 			if (copy_map[y][x] == 'C' || copy_map[y][x] == 'E')
 			{
 				write(2, "Error: Map with no valid path to collectible or exit!\n", 54);
-				free(copy_map);
-				return;
+				// free(copy_map);
+				// free_map(window->map.map_mtrx);
+				exit(1);
 			}
 			x++;
 		}
 		y++;
 	}
-	free(copy_map);
+	// free(copy_map);
 }

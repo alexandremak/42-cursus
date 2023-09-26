@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:45:22 by amak              #+#    #+#             */
-/*   Updated: 2023/09/25 23:23:23 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/26 22:36:28 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,13 @@ int	main(int argc, char **argv)
 	// i = 0;
 	check_file(argc, argv, &file_fd);
 	check_map(file_fd, &window);
+	close(file_fd);
 	valid_path_exit(&window);
 	init_window(&window);
 	setup_imgs(&window);
-	printf("%d \n", window.map.height);
-	printf("%d \n", window.map.width);
-	printf("%c", window.map.map_mtrx[1][1]);
 	build_map(&window);
-	write(1, "-->\n", 4);
 	mlx_key_hook(window.win_ptr, key_press, &window);
 	mlx_hook(window.win_ptr, 17, 0, close_window, &window);
 	mlx_loop(window.mlx_ptr);
-	close(file_fd);
 	return (0);
 }

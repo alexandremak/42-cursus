@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:23:27 by amak              #+#    #+#             */
-/*   Updated: 2023/09/25 23:36:29 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/26 22:09:11 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 /* KEYBOARD CODES*/
 # define ESC 65307
 
-# define W119
-# define A 97
+# define W 119
 # define S 115
+# define A 97
 # define D 100
 
 /* SIZE OF WINDOW AND EACH TILE*/
@@ -53,6 +53,7 @@ typedef struct s_images{
 	void	*player;
 	void	*space;
 	void	*wall;
+	void	*player_exit;
 }	t_images;
 
 typedef struct s_windows{
@@ -75,6 +76,7 @@ void	check_file(int argc, char **argv, int *fd);
 int		valid_char(char c);
 int		load_component(t_windows *window, int y, int x);
 int		must_contain(t_windows *window);
+void	free_map(char **map);
 
 /* VALIDATE MAP DIMENSIONS */
 void	load_map(t_windows *window, int fd, int count_line);
@@ -96,10 +98,12 @@ int		key_press(int keycode, t_windows *window);
 /* MAP BUILDER */
 void	setup_imgs(t_windows *window);
 void	insert_img(char c, int y, int x, t_windows *window);
+void	free_imgs(t_windows *window);
 void	build_map(t_windows *window);
 
 /* MOVING */
 int		check_move(t_windows *window, int y, int x);
 void	exec_move(t_windows *window, int y, int x);
+void 	moving(t_windows *window, int y, int x);
 
 #endif

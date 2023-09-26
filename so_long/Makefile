@@ -6,7 +6,7 @@
 #    By: amak <amak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/13 20:47:10 by amak              #+#    #+#              #
-#    Updated: 2023/09/25 22:05:25 by amak             ###   ########.fr        #
+#    Updated: 2023/09/26 20:57:42 by amak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SOURCES = 	main.c \
 			validate_map.c \
 			validate_path.c \
 			mlx_window.c \
-			map_builder.c
+			map_builder.c \
+			moving.c
 			
 OBJECTS = $(SOURCES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:31:32 by amak              #+#    #+#             */
-/*   Updated: 2023/09/25 23:17:35 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/26 23:02:50 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int 	is_rectangle(t_windows *window)
 	while(window->map.map_mtrx[i])
 	{
 		width = ft_strlen(window->map.map_mtrx[i]);
-		if (i < (window->map.height - 1))
+		if (window->map.map_mtrx[i][width - 1] == '\n')
 		{
 			if (width != ft_strlen(window->map.map_mtrx[0]))
 				return (0);
@@ -46,7 +46,7 @@ int 	is_rectangle(t_windows *window)
 		{
 			if (width != (ft_strlen(window->map.map_mtrx[0]) - 1))
 				return (0);
-		}
+		}	
 		i++;
 	}
 	window->map.width = ft_strlen(window->map.map_mtrx[0]) - 1;
@@ -96,7 +96,6 @@ int	valid_components(t_windows *window)
 		x = 0;
 		while (x < window->map.width)
 		{
-			
 			if (!valid_char(window->map.map_mtrx[y][x]))
 				return (0);
 			if (!load_component(window, y, x))
@@ -113,24 +112,24 @@ int	valid_components(t_windows *window)
 void	check_map(int fd, t_windows *window)
 {
 	load_map(window, fd, 0);
-	if (!window->map.map_mtrx[0])
+	if (!window->map.map_mtrx)
 	{
 		write(2, "Error: First line of Map file is empty!\n", 40);
-		return;
+		exit(1);
 	}
 	if (!is_rectangle(window))
 	{
 		write(2, "Error: Map dimension is not a rectangle!\n", 41);
-		return;
+		exit(1);
 	}
 	if (!wall_ok(window))
 	{
 		write(2, "Error: Map is not closed/surrounded by walls!\n", 46);
-		return;
+		exit(1);
 	}
 	if (!valid_components(window))
 	{
 		write(2, "Error: Map with incorrect components!\n", 38);
-		return;
+		exit(1);
 	}
 }
