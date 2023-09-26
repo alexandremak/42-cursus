@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:23:27 by amak              #+#    #+#             */
-/*   Updated: 2023/09/22 16:06:13 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/25 23:36:29 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 # include <sys/stat.h>
 
 # include <stdio.h>
+
+/* KEYBOARD CODES*/
+# define ESC 65307
+
+# define W119
+# define A 97
+# define S 115
+# define D 100
 
 /* SIZE OF WINDOW AND EACH TILE*/
 # define PIXELS 16
@@ -40,18 +48,16 @@ typedef struct s_map{
 }	t_map;
 
 typedef struct s_images{
-	void	*player;
-	void	*wall;
-	void	*exit;
 	void	*collect;
-	void	*floor;
+	void	*exit;
+	void	*player;
+	void	*space;
+	void	*wall;
 }	t_images;
 
 typedef struct s_windows{
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			width_pixel;
-	int			height_pixel;
 	t_map		map;
 	t_images	images;
 }	t_windows;
@@ -67,20 +73,30 @@ void	check_file(int argc, char **argv, int *fd);
 
 /* VALIDATE AUX */
 int		valid_char(char c);
-int		load_component(t_map *map, int y, int x);
-int		must_contain(t_map *map);
+int		load_component(t_windows *window, int y, int x);
+int		must_contain(t_windows *window);
 
 /* VALIDATE MAP DIMENSIONS */
-void	load_map(t_map *map, int fd, int count_line);
-int 	is_rectangle(t_map *map);
-int		wall_ok(t_map *map);
-int		valid_components(t_map *map);
-void	check_map(int fd, t_map *map);
+void	load_map(t_windows *window, int fd, int count_line);
+int 	is_rectangle(t_windows *window);
+int		wall_ok(t_windows *window);
+int		valid_components(t_windows *window);
+void	check_map(int fd, t_windows *window);
 
 /* VALIDATE PATH */
-char	**mapcpy(t_map *map);
+char	**mapcpy(t_windows *window);
 void	flood_fill(char **map, int y, int x);
-void	valid_path_exit(t_map *map);
+void	valid_path_exit(t_windows *window);
+
+/* MLX WINDOW*/
+void	init_window(t_windows *window);
+int		close_window(t_windows *window);
+int		key_press(int keycode, t_windows *window);
+
+/* MAP BUILDER */
+void	setup_imgs(t_windows *window);
+void	insert_img(char c, int y, int x, t_windows *window);
+void	build_map(t_windows *window);
 
 /* MOVING */
 int		check_move(t_windows *window, int y, int x);

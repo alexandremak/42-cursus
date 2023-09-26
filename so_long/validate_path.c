@@ -6,24 +6,24 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 08:40:08 by amak              #+#    #+#             */
-/*   Updated: 2023/09/22 12:21:39 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/25 23:02:01 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**mapcpy(t_map *map)
+char	**mapcpy(t_windows *window)
 {
 	char **dst;
 	int	i;
 	
 	i = 0;
-	dst = malloc(sizeof(char *) * (map->height + 1));
+	dst = malloc(sizeof(char *) * (window->map.height + 1));
 	if (!dst)
 		return (NULL);
-	while (i < map->height)
+	while (i < window->map.height)
 	{
-		dst[i] = ft_strdup(map->map_mtrx[i]);
+		dst[i] = ft_strdup(window->map.map_mtrx[i]);
 		i++;
 	}
 	return (dst);
@@ -41,21 +41,21 @@ void	flood_fill(char **map, int y, int x)
 	flood_fill(map, y, x - 1);
 }
 
-void	valid_path_exit(t_map *map)
+void	valid_path_exit(t_windows *window)
 {
 	char	**copy_map;
 	int		y;
 	int		x;
 
-	copy_map = mapcpy(map);
+	copy_map = mapcpy(window);
 	if (!copy_map)
 		return;
 	y = 0;
-	flood_fill(copy_map, map->p_ypos, map->p_xpos);
-	while (y < map->height)
+	flood_fill(copy_map, window->map.p_ypos, window->map.p_xpos);
+	while (y < window->map.height)
 	{
 		x = 0;
-		while (x < map->width)
+		while (x < window->map.width)
 		{
 			if (copy_map[y][x] == 'C' || copy_map[y][x] == 'E')
 			{

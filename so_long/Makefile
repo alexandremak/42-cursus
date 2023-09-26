@@ -6,7 +6,7 @@
 #    By: amak <amak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/13 20:47:10 by amak              #+#    #+#              #
-#    Updated: 2023/09/22 11:32:39 by amak             ###   ########.fr        #
+#    Updated: 2023/09/25 22:05:25 by amak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc -g
 
 CFLAGS = -Wall -Wextra -Werror
 
-#	LFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+LFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 SOURCES = 	main.c \
 			ft_strchr.c \
@@ -27,15 +27,17 @@ SOURCES = 	main.c \
 			validate_file.c \
 			validate_aux.c \
 			validate_map.c \
-			validate_path.c
+			validate_path.c \
+			mlx_window.c \
+			map_builder.c
 			
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
-#	$(CC) $(CFLAGS) $(OBJECTS) $(LFLAGS) -o $(NAME)
+#	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJECTS) $(LFLAGS) -o $(NAME)
 	
 clean:
 	@rm -f $(OBJECTS)
