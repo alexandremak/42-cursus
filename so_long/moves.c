@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moving.c                                           :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:28:48 by amak              #+#    #+#             */
-/*   Updated: 2023/09/26 22:03:18 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/28 20:50:35 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	exec_move(t_windows *window, int y, int x)
 	window->map.count_moves++;
 }
 
-void 	moving(t_windows *window, int y, int x)
+void 	move(t_windows *window, int y, int x)
 {
 	if (check_move(window, y, x) == 1)
 	{

@@ -6,7 +6,7 @@
 #    By: amak <amak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/13 20:47:10 by amak              #+#    #+#              #
-#    Updated: 2023/09/26 20:57:42 by amak             ###   ########.fr        #
+#    Updated: 2023/09/28 21:17:13 by amak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,14 @@ SOURCES = 	main.c \
 			ft_strlen.c \
 			get_next_line.c \
 			get_next_line_utils.c \
-			validate_file.c \
-			validate_aux.c \
-			validate_map.c \
-			validate_path.c \
-			mlx_window.c \
-			map_builder.c \
-			moving.c
+			check_file.c \
+			check_aux.c \
+			check_map.c \
+			check_path.c \
+			init_mlx.c \
+			build_map.c \
+			moves.c \
+			exit.c
 			
 OBJECTS = $(SOURCES:.c=.o)
 

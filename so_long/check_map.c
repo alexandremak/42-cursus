@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map.c                                     :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:31:32 by amak              #+#    #+#             */
-/*   Updated: 2023/09/26 23:02:50 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/28 21:27:57 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		wall_ok(t_windows *window)
 	return (1);
 }
 
-int	valid_components(t_windows *window)
+int		valid_components(t_windows *window)
 {
 	int	x;
 	int y;
@@ -112,24 +112,25 @@ int	valid_components(t_windows *window)
 void	check_map(int fd, t_windows *window)
 {
 	load_map(window, fd, 0);
+	close(fd);
 	if (!window->map.map_mtrx)
 	{
 		write(2, "Error: First line of Map file is empty!\n", 40);
-		exit(1);
+		close_window(window);
 	}
 	if (!is_rectangle(window))
 	{
 		write(2, "Error: Map dimension is not a rectangle!\n", 41);
-		exit(1);
+		close_window(window);
 	}
 	if (!wall_ok(window))
 	{
 		write(2, "Error: Map is not closed/surrounded by walls!\n", 46);
-		exit(1);
+		close_window(window);
 	}
 	if (!valid_components(window))
 	{
 		write(2, "Error: Map with incorrect components!\n", 38);
-		exit(1);
+		close_window(window);
 	}
 }

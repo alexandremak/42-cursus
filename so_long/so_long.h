@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:23:27 by amak              #+#    #+#             */
-/*   Updated: 2023/09/26 22:09:11 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/28 21:16:43 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,42 +68,45 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *str);
 
-/* VALIDATE MAPFILE */
+/* CHECK MAPFILE */
 int		map_ext_ok(char *filepath);
 void	check_file(int argc, char **argv, int *fd);
 
-/* VALIDATE AUX */
+/* CHECK AUX */
 int		valid_char(char c);
 int		load_component(t_windows *window, int y, int x);
 int		must_contain(t_windows *window);
-void	free_map(char **map);
 
-/* VALIDATE MAP DIMENSIONS */
+/* CHECK MAP DIMENSIONS */
 void	load_map(t_windows *window, int fd, int count_line);
 int 	is_rectangle(t_windows *window);
 int		wall_ok(t_windows *window);
 int		valid_components(t_windows *window);
 void	check_map(int fd, t_windows *window);
 
-/* VALIDATE PATH */
+/* CHECK PATH */
 char	**mapcpy(t_windows *window);
 void	flood_fill(char **map, int y, int x);
-void	valid_path_exit(t_windows *window);
+void	check_path(t_windows *window);
 
 /* MLX WINDOW*/
-void	init_window(t_windows *window);
-int		close_window(t_windows *window);
+void	init_imgs(t_windows *window);
+void	init_mlx(t_windows *window);
 int		key_press(int keycode, t_windows *window);
 
 /* MAP BUILDER */
-void	setup_imgs(t_windows *window);
 void	insert_img(char c, int y, int x, t_windows *window);
-void	free_imgs(t_windows *window);
 void	build_map(t_windows *window);
 
 /* MOVING */
 int		check_move(t_windows *window, int y, int x);
 void	exec_move(t_windows *window, int y, int x);
-void 	moving(t_windows *window, int y, int x);
+void 	move(t_windows *window, int y, int x);
+
+/* EXIT FUNCTIONS*/
+void	free_map(char **map);
+void	free_imgs(t_windows *window);
+int		free_all(t_windows *window);
+void	close_window(t_windows *window);
 
 #endif
