@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 08:40:08 by amak              #+#    #+#             */
-/*   Updated: 2023/09/28 21:49:00 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/29 00:19:58 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**mapcpy(t_windows *window)
 	int	i;
 	
 	i = 0;
-	dst = malloc(sizeof(char *) * (window->map.height + 1));
+	dst = (char **)malloc(sizeof(char *) * (window->map.height + 1));
 	if (!dst)
 		return (NULL);
 	while (i < window->map.height)
@@ -26,6 +26,7 @@ char	**mapcpy(t_windows *window)
 		dst[i] = ft_strdup(window->map.map_mtrx[i]);
 		i++;
 	}
+	dst[i] = NULL;
 	return (dst);
 }
 

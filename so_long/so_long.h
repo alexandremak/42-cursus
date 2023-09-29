@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:23:27 by amak              #+#    #+#             */
-/*   Updated: 2023/09/28 21:16:43 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/29 00:35:08 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	insert_img(char c, int y, int x, t_windows *window);
 void	build_map(t_windows *window);
 
 /* MOVING */
+void 	put_posnbr(int n);
 int		check_move(t_windows *window, int y, int x);
 void	exec_move(t_windows *window, int y, int x);
 void 	move(t_windows *window, int y, int x);

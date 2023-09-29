@@ -6,11 +6,27 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:28:48 by amak              #+#    #+#             */
-/*   Updated: 2023/09/28 20:50:35 by amak             ###   ########.fr       */
+/*   Updated: 2023/09/29 00:42:18 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void 	put_posnbr(int n)
+{
+	char c;
+
+	if (n >= 10)
+	{
+		put_posnbr(n / 10);
+		put_posnbr(n % 10);
+	}
+	else
+	{
+		c = '0' + n;
+		write(1, &c, 1);	
+	}
+}
 
 int	check_move(t_windows *window, int y, int x)
 {
@@ -48,6 +64,9 @@ void 	move(t_windows *window, int y, int x)
 	{
 		exec_move(window, y, x);
 		build_map(window);
+		write(1, "Moves: ", 7);
+		put_posnbr(window->map.count_moves);
+		write(1, "\n", 1);
 	}
 	if (check_move(window, y, x) == -1)
 		close_window(window);
