@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 17:26:04 by amak              #+#    #+#             */
-/*   Updated: 2023/09/28 20:26:00 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/09 20:41:39 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	load_component(t_windows *window, int y, int x)
 
 int	must_contain(t_windows *window)
 {
-	int result;
+	int	result;
 
 	result = 1;
 	if (window->map.collects == 0)

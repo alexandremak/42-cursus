@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 08:40:08 by amak              #+#    #+#             */
-/*   Updated: 2023/09/29 00:19:58 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/09 20:45:33 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	**mapcpy(t_windows *window)
 {
-	char **dst;
-	int	i;
-	
+	char	**dst;
+	int		i;
+
 	i = 0;
 	dst = (char **)malloc(sizeof(char *) * (window->map.height + 1));
 	if (!dst)
@@ -33,7 +33,7 @@ char	**mapcpy(t_windows *window)
 void	flood_fill(char **map, int y, int x)
 {
 	if (map[y][x] == 'F' || map[y][x] == '1')
-		return;
+		return ;
 	if (map[y][x] == 'C' || map[y][x] == '0' || map[y][x] == 'E' || map[y][x] == 'P')
 		map[y][x] = 'F';
 	flood_fill(map, y + 1, x);
@@ -50,7 +50,7 @@ void	check_path(t_windows *window)
 
 	copy_map = mapcpy(window);
 	if (!copy_map)
-		return;
+		return ;
 	y = 0;
 	flood_fill(copy_map, window->map.p_ypos, window->map.p_xpos);
 	while (y < window->map.height)

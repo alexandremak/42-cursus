@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:31:32 by amak              #+#    #+#             */
-/*   Updated: 2023/09/28 21:27:57 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/09 20:49:32 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	load_map(t_windows *window, int fd, int count_line)
 {
-	char *line;
+	char	*line;
 
 	line = get_next_line(fd);
 	if (line)
@@ -28,13 +28,13 @@ void	load_map(t_windows *window, int fd, int count_line)
 		window->map.map_mtrx[count_line] = line;
 }
 
-int 	is_rectangle(t_windows *window)
+int	is_rectangle(t_windows *window)
 {
 	size_t	width;
 	int		i;
-	
+
 	i = 0;
-	while(window->map.map_mtrx[i])
+	while (window->map.map_mtrx[i])
 	{
 		width = ft_strlen(window->map.map_mtrx[i]);
 		if (window->map.map_mtrx[i][width - 1] == '\n')
@@ -46,14 +46,14 @@ int 	is_rectangle(t_windows *window)
 		{
 			if (width != (ft_strlen(window->map.map_mtrx[0]) - 1))
 				return (0);
-		}	
+		}
 		i++;
 	}
 	window->map.width = ft_strlen(window->map.map_mtrx[0]) - 1;
 	return (1);
 }
 
-int		wall_ok(t_windows *window)
+int	wall_ok(t_windows *window)
 {
 	int	i;
 	int	p_height;
@@ -64,7 +64,7 @@ int		wall_ok(t_windows *window)
 	p_width = window->map.width - 1;
 	while (window->map.map_mtrx[0][i] && i <= p_width)
 	{
-		if(window->map.map_mtrx[0][i] != '1')
+		if (window->map.map_mtrx[0][i] != '1')
 			return (0);
 		i++;
 	}
@@ -78,17 +78,17 @@ int		wall_ok(t_windows *window)
 	i = 0;
 	while (window->map.map_mtrx[p_height][i] && i <= p_width)
 	{
-		if(window->map.map_mtrx[p_height][i] != '1')
+		if (window->map.map_mtrx[p_height][i] != '1')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int		valid_components(t_windows *window)
+int	valid_components(t_windows *window)
 {
 	int	x;
-	int y;
+	int	y;
 
 	y = 0;
 	while (y < window->map.height)

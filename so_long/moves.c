@@ -6,15 +6,15 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:28:48 by amak              #+#    #+#             */
-/*   Updated: 2023/09/29 00:42:18 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/09 20:40:59 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void 	put_posnbr(int n)
+void	put_posnbr(int n)
 {
-	char c;
+	char	c;
 
 	if (n >= 10)
 	{
@@ -24,7 +24,7 @@ void 	put_posnbr(int n)
 	else
 	{
 		c = '0' + n;
-		write(1, &c, 1);	
+		write(1, &c, 1);
 	}
 }
 
@@ -58,7 +58,7 @@ void	exec_move(t_windows *window, int y, int x)
 	window->map.count_moves++;
 }
 
-void 	move(t_windows *window, int y, int x)
+void	move(t_windows *window, int y, int x)
 {
 	if (check_move(window, y, x) == 1)
 	{

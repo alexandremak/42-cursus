@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:45:22 by amak              #+#    #+#             */
-/*   Updated: 2023/09/29 00:59:00 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/09 20:44:04 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	int	mapfile_fd;
+	int					mapfile_fd;
 	static t_windows	window;
 
 	check_file(argc, argv, &mapfile_fd);

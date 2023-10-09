@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:51:08 by amak              #+#    #+#             */
-/*   Updated: 2023/09/29 00:59:08 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/09 22:39:53 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_imgs(t_windows *window)
 
 	window->images.collect = mlx_xpm_file_to_image(window->mlx_ptr, "img_collect.xpm", &size, &size);
 	window->images.exit = mlx_xpm_file_to_image(window->mlx_ptr, "img_exit.xpm", &size, &size);
+	window->images.exit_open = mlx_xpm_file_to_image(window->mlx_ptr, "img_exit_open.xpm", &size, &size);
 	window->images.player = mlx_xpm_file_to_image(window->mlx_ptr, "img_player.xpm", &size, &size);
 	window->images.space = mlx_xpm_file_to_image(window->mlx_ptr, "img_space.xpm", &size, &size);
 	window->images.wall = mlx_xpm_file_to_image(window->mlx_ptr, "img_wall.xpm", &size, &size);
@@ -31,7 +32,7 @@ void	init_mlx(t_windows *window)
 	init_imgs(window);
 }
 
-int		key_press(int keycode, t_windows *window)
+int	key_press(int keycode, t_windows *window)
 {
 	if (keycode == ESC)
 		close_window(window);

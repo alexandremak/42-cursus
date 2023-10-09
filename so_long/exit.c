@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 20:25:33 by amak              #+#    #+#             */
-/*   Updated: 2023/09/28 22:34:55 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/09 20:44:47 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_imgs(t_windows *window)
 		mlx_destroy_image(window->mlx_ptr, window->images.player_exit);
 }
 
-int		free_all(t_windows *window)
+int	free_all(t_windows *window)
 {
 	if (window->map.map_mtrx)
 		free_map(window->map.map_mtrx);

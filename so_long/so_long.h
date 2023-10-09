@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:23:27 by amak              #+#    #+#             */
-/*   Updated: 2023/09/29 00:35:08 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/09 22:39:18 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@
 # define D 100
 
 /* SIZE OF WINDOW AND EACH TILE*/
-# define PIXELS 16
+# define PIXELS 32
 
 /* STRUCTURES */
 typedef struct s_map{
-	char 	**map_mtrx;
+	char	**map_mtrx;
 	int		p_xpos;
 	int		p_ypos;
 	int		e_xpos;
@@ -50,6 +50,7 @@ typedef struct s_map{
 typedef struct s_images{
 	void	*collect;
 	void	*exit;
+	void	*exit_open;
 	void	*player;
 	void	*space;
 	void	*wall;
@@ -79,7 +80,7 @@ int		must_contain(t_windows *window);
 
 /* CHECK MAP DIMENSIONS */
 void	load_map(t_windows *window, int fd, int count_line);
-int 	is_rectangle(t_windows *window);
+int		is_rectangle(t_windows *window);
 int		wall_ok(t_windows *window);
 int		valid_components(t_windows *window);
 void	check_map(int fd, t_windows *window);
@@ -99,10 +100,10 @@ void	insert_img(char c, int y, int x, t_windows *window);
 void	build_map(t_windows *window);
 
 /* MOVING */
-void 	put_posnbr(int n);
+void	put_posnbr(int n);
 int		check_move(t_windows *window, int y, int x);
 void	exec_move(t_windows *window, int y, int x);
-void 	move(t_windows *window, int y, int x);
+void	move(t_windows *window, int y, int x);
 
 /* EXIT FUNCTIONS*/
 void	free_map(char **map);
