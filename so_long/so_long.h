@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:23:27 by amak              #+#    #+#             */
-/*   Updated: 2023/10/09 22:39:18 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/11 20:42:10 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@
 
 /* STRUCTURES */
 typedef struct s_map{
-	char	**map_mtrx;
+	char	**mtrx;
 	int		p_xpos;
 	int		p_ypos;
+	char	last_key;
 	int		e_xpos;
 	int		e_ypos;
 	int		collects;
@@ -51,7 +52,10 @@ typedef struct s_images{
 	void	*collect;
 	void	*exit;
 	void	*exit_open;
-	void	*player;
+	void	*player_s;
+	void	*player_w;
+	void	*player_a;
+	void	*player_d;
 	void	*space;
 	void	*wall;
 	void	*player_exit;

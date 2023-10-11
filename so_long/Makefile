@@ -6,7 +6,7 @@
 #    By: amak <amak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/13 20:47:10 by amak              #+#    #+#              #
-#    Updated: 2023/09/28 21:17:13 by amak             ###   ########.fr        #
+#    Updated: 2023/10/11 18:58:28 by amak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 #	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LFLAGS) -o $(NAME)
+	@echo Object files created!
+	@echo Executable files created!
 	
 clean:
 	@rm -f $(OBJECTS)

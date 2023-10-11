@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 08:40:08 by amak              #+#    #+#             */
-/*   Updated: 2023/10/09 20:45:33 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/11 20:44:42 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**mapcpy(t_windows *window)
 		return (NULL);
 	while (i < window->map.height)
 	{
-		dst[i] = ft_strdup(window->map.map_mtrx[i]);
+		dst[i] = ft_strdup(window->map.mtrx[i]);
 		i++;
 	}
 	dst[i] = NULL;

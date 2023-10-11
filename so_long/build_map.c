@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:40:51 by amak              #+#    #+#             */
-/*   Updated: 2023/10/09 22:46:43 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/11 20:43:55 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	insert_img(char c, int x, int y, t_windows *win)
 		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.collect, x * PIXELS, y * PIXELS);
 	if (c == 'E')
 	{
-		if (win->map.collects == 0)	
+		if (win->map.collects == 0)
 			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.exit_open, x * PIXELS, y * PIXELS);
 		else
 			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.exit, x * PIXELS, y * PIXELS);
@@ -27,8 +27,14 @@ void	insert_img(char c, int x, int y, t_windows *win)
 	{
 		if (win->map.p_ypos == win->map.e_ypos && win->map.p_xpos == win->map.e_xpos)
 			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_exit, x * PIXELS, y * PIXELS);
+		else if (win->map.last_key == 'w')
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_w, x * PIXELS, y * PIXELS);
+		else if (win->map.last_key == 'a')
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_a, x * PIXELS, y * PIXELS);
+		else if (win->map.last_key == 'd')
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_d, x * PIXELS, y * PIXELS);
 		else
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player, x * PIXELS, y * PIXELS);
+			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_s, x * PIXELS, y * PIXELS);
 	}
 	if (c == '0')
 		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.space, x * PIXELS, y * PIXELS);
@@ -47,7 +53,7 @@ void	build_map(t_windows *window)
 		x = 0;
 		while (x < window->map.width)
 		{
-			insert_img(window->map.map_mtrx[y][x], x, y, window);
+			insert_img(window->map.mtrx[y][x], x, y, window);
 			x++;
 		}
 		y++;

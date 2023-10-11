@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 17:26:04 by amak              #+#    #+#             */
-/*   Updated: 2023/10/09 20:41:39 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/11 20:44:21 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	valid_char(char c)
 
 int	load_component(t_windows *window, int y, int x)
 {
-	if (window->map.map_mtrx[y][x] == 'C')
+	if (window->map.mtrx[y][x] == 'C')
 		window->map.collects++;
-	if (window->map.map_mtrx[y][x] == 'P')
+	if (window->map.mtrx[y][x] == 'P')
 	{
 		if (window->map.p_ypos != 0)
 		{
@@ -34,7 +34,7 @@ int	load_component(t_windows *window, int y, int x)
 		window->map.p_ypos = y;
 		window->map.p_xpos = x;
 	}
-	if (window->map.map_mtrx[y][x] == 'E')
+	if (window->map.mtrx[y][x] == 'E')
 	{
 		if (window->map.e_ypos != 0)
 		{

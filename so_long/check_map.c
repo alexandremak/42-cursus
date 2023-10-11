@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:31:32 by amak              #+#    #+#             */
-/*   Updated: 2023/10/09 20:49:32 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/11 21:53:01 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	load_map(t_windows *window, int fd, int count_line)
 	else if (count_line > 0)
 	{
 		window->map.height = count_line;
-		window->map.map_mtrx = malloc(sizeof(char *) * (count_line + 1));
+		window->map.mtrx = malloc(sizeof(char *) * (count_line + 1));
 	}
-	if (window->map.map_mtrx)
-		window->map.map_mtrx[count_line] = line;
+	if (window->map.mtrx)
+		window->map.mtrx[count_line] = line;
 }
 
 int	is_rectangle(t_windows *window)
@@ -34,51 +34,51 @@ int	is_rectangle(t_windows *window)
 	int		i;
 
 	i = 0;
-	while (window->map.map_mtrx[i])
+	while (window->map.mtrx[i])
 	{
-		width = ft_strlen(window->map.map_mtrx[i]);
-		if (window->map.map_mtrx[i][width - 1] == '\n')
+		width = ft_strlen(window->map.mtrx[i]);
+		if (window->map.mtrx[i][width - 1] == '\n')
 		{
-			if (width != ft_strlen(window->map.map_mtrx[0]))
+			if (width != ft_strlen(window->map.mtrx[0]))
 				return (0);
 		}
 		else
 		{
-			if (width != (ft_strlen(window->map.map_mtrx[0]) - 1))
+			if (width != (ft_strlen(window->map.mtrx[0]) - 1))
 				return (0);
 		}
 		i++;
 	}
-	window->map.width = ft_strlen(window->map.map_mtrx[0]) - 1;
+	window->map.width = ft_strlen(window->map.mtrx[0]) - 1;
 	return (1);
 }
 
-int	wall_ok(t_windows *window)
+int	wall_ok(t_windows *win)
 {
 	int	i;
-	int	p_height;
-	int	p_width;
+	int	height;
+	int	width;
 
 	i = 0;
-	p_height = window->map.height - 1;
-	p_width = window->map.width - 1;
-	while (window->map.map_mtrx[0][i] && i <= p_width)
+	height = win->map.height - 1;
+	width = win->map.width - 1;
+	while (win->map.mtrx[0][i] && i <= width)
 	{
-		if (window->map.map_mtrx[0][i] != '1')
+		if (win->map.mtrx[0][i] != '1')
 			return (0);
 		i++;
 	}
 	i = 1;
-	while (i <= (p_height - 1))
+	while (i <= (height - 1))
 	{
-		if ((window->map.map_mtrx[i][0] != '1') || (window->map.map_mtrx[i][p_width] != '1'))
+		if ((win->map.mtrx[i][0] != '1') || (win->map.mtrx[i][width] != '1'))
 			return (0);
 		i++;
 	}
 	i = 0;
-	while (window->map.map_mtrx[p_height][i] && i <= p_width)
+	while (win->map.mtrx[height][i] && i <= width)
 	{
-		if (window->map.map_mtrx[p_height][i] != '1')
+		if (win->map.mtrx[height][i] != '1')
 			return (0);
 		i++;
 	}
@@ -96,7 +96,7 @@ int	valid_components(t_windows *window)
 		x = 0;
 		while (x < window->map.width)
 		{
-			if (!valid_char(window->map.map_mtrx[y][x]))
+			if (!valid_char(window->map.mtrx[y][x]))
 				return (0);
 			if (!load_component(window, y, x))
 				return (0);
@@ -113,7 +113,7 @@ void	check_map(int fd, t_windows *window)
 {
 	load_map(window, fd, 0);
 	close(fd);
-	if (!window->map.map_mtrx)
+	if (!window->map.mtrx)
 	{
 		write(2, "Error: First line of Map file is empty!\n", 40);
 		close_window(window);
