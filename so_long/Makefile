@@ -6,7 +6,7 @@
 #    By: amak <amak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/13 20:47:10 by amak              #+#    #+#              #
-#    Updated: 2023/10/11 18:58:28 by amak             ###   ########.fr        #
+#    Updated: 2023/10/12 02:59:24 by amak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,9 @@ OBJECTS = $(SOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-#	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LFLAGS) -o $(NAME)
 	@echo Object files created!
-	@echo Executable files created!
+	@echo Executable file created!
 	
 clean:
 	@rm -f $(OBJECTS)

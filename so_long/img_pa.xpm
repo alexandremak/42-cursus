@@ -1,5 +1,5 @@
 /* XPM */
-static char *_791d03c106541008d816ad95c854ff5HQku2TgOylsDP39L[] = {
+static char * player_a[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 185 2 ",
 "   c #040002",

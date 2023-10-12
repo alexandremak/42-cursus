@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 20:25:33 by amak              #+#    #+#             */
-/*   Updated: 2023/10/11 20:44:47 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 02:55:48 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,26 @@ void	free_map(char **map)
 
 void	free_imgs(t_windows *window)
 {
-	if (window->images.collect)
-		mlx_destroy_image(window->mlx_ptr, window->images.collect);
-	if (window->images.exit)
-		mlx_destroy_image(window->mlx_ptr, window->images.exit);
-	if (window->images.exit_open)
-		mlx_destroy_image(window->mlx_ptr, window->images.exit_open);
-	if (window->images.player_s)
-		mlx_destroy_image(window->mlx_ptr, window->images.player_s);
-	if (window->images.player_w)
-		mlx_destroy_image(window->mlx_ptr, window->images.player_w);
-	if (window->images.player_a)
-		mlx_destroy_image(window->mlx_ptr, window->images.player_a);
-	if (window->images.player_d)
-		mlx_destroy_image(window->mlx_ptr, window->images.player_d);
-	if (window->images.space)
-		mlx_destroy_image(window->mlx_ptr, window->images.space);
-	if (window->images.wall)
-		mlx_destroy_image(window->mlx_ptr, window->images.wall);
-	if (window->images.player_exit)
-		mlx_destroy_image(window->mlx_ptr, window->images.player_exit);
+	if (window->img.cltb)
+		mlx_destroy_image(window->mlx, window->img.cltb);
+	if (window->img.e)
+		mlx_destroy_image(window->mlx, window->img.e);
+	if (window->img.eo)
+		mlx_destroy_image(window->mlx, window->img.eo);
+	if (window->img.ps)
+		mlx_destroy_image(window->mlx, window->img.ps);
+	if (window->img.pw)
+		mlx_destroy_image(window->mlx, window->img.pw);
+	if (window->img.pa)
+		mlx_destroy_image(window->mlx, window->img.pa);
+	if (window->img.pd)
+		mlx_destroy_image(window->mlx, window->img.pd);
+	if (window->img.space)
+		mlx_destroy_image(window->mlx, window->img.space);
+	if (window->img.wall)
+		mlx_destroy_image(window->mlx, window->img.wall);
+	if (window->img.pe)
+		mlx_destroy_image(window->mlx, window->img.pe);
 }
 
 int	free_all(t_windows *window)
@@ -57,12 +57,12 @@ int	free_all(t_windows *window)
 	if (window->map.mtrx)
 		free_map(window->map.mtrx);
 	free_imgs(window);
-	if (window->win_ptr)
-		mlx_destroy_window(window->mlx_ptr, window->win_ptr);
-	if (window->mlx_ptr)
+	if (window->win)
+		mlx_destroy_window(window->mlx, window->win);
+	if (window->mlx)
 	{
-		mlx_destroy_display(window->mlx_ptr);
-		free(window->mlx_ptr);
+		mlx_destroy_display(window->mlx);
+		free(window->mlx);
 	}
 	return (1);
 }

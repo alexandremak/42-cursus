@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 20:45:22 by amak              #+#    #+#             */
-/*   Updated: 2023/10/11 20:07:06 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 02:52:18 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(int argc, char **argv)
 	check_path(&window);
 	init_mlx(&window);
 	build_map(&window);
-	mlx_key_hook(window.win_ptr, key_press, &window);
-	mlx_hook(window.win_ptr, 17, 0, free_all, &window);
-	mlx_loop(window.mlx_ptr);
+	mlx_key_hook(window.win, key_press, &window);
+	mlx_hook(window.win, 17, 0, free_all, &window);
+	mlx_loop(window.mlx);
 	return (0);
 }

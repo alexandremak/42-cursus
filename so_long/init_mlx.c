@@ -6,32 +6,33 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:51:08 by amak              #+#    #+#             */
-/*   Updated: 2023/10/11 20:36:35 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 02:35:11 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_imgs(t_windows *window)
+void	init_imgs(t_windows *win)
 {
-	int		size;
+	int		s;
 
-	window->images.collect = mlx_xpm_file_to_image(window->mlx_ptr, "img_collect.xpm", &size, &size);
-	window->images.exit = mlx_xpm_file_to_image(window->mlx_ptr, "img_exit.xpm", &size, &size);
-	window->images.exit_open = mlx_xpm_file_to_image(window->mlx_ptr, "img_exit_open.xpm", &size, &size);
-	window->images.player_s = mlx_xpm_file_to_image(window->mlx_ptr, "img_player_s.xpm", &size, &size);
-	window->images.player_w = mlx_xpm_file_to_image(window->mlx_ptr, "img_player_w.xpm", &size, &size);
-	window->images.player_a = mlx_xpm_file_to_image(window->mlx_ptr, "img_player_a.xpm", &size, &size);
-	window->images.player_d = mlx_xpm_file_to_image(window->mlx_ptr, "img_player_d.xpm", &size, &size);
-	window->images.space = mlx_xpm_file_to_image(window->mlx_ptr, "img_space.xpm", &size, &size);
-	window->images.wall = mlx_xpm_file_to_image(window->mlx_ptr, "img_wall.xpm", &size, &size);
-	window->images.player_exit = mlx_xpm_file_to_image(window->mlx_ptr, "img_player_exit.xpm", &size, &size);
+	win->img.cltb = mlx_xpm_file_to_image(win->mlx, "img_cltb.xpm", &s, &s);
+	win->img.e = mlx_xpm_file_to_image(win->mlx, "img_e.xpm", &s, &s);
+	win->img.eo = mlx_xpm_file_to_image(win->mlx, "img_eo.xpm", &s, &s);
+	win->img.ps = mlx_xpm_file_to_image(win->mlx, "img_ps.xpm", &s, &s);
+	win->img.pw = mlx_xpm_file_to_image(win->mlx, "img_pw.xpm", &s, &s);
+	win->img.pa = mlx_xpm_file_to_image(win->mlx, "img_pa.xpm", &s, &s);
+	win->img.pd = mlx_xpm_file_to_image(win->mlx, "img_pd.xpm", &s, &s);
+	win->img.space = mlx_xpm_file_to_image(win->mlx, "img_space.xpm", &s, &s);
+	win->img.wall = mlx_xpm_file_to_image(win->mlx, "img_wall.xpm", &s, &s);
+	win->img.pe = mlx_xpm_file_to_image(win->mlx, "img_pe.xpm", &s, &s);
 }
 
 void	init_mlx(t_windows *window)
 {
-	window->mlx_ptr = mlx_init();
-	window->win_ptr = mlx_new_window(window->mlx_ptr, window->map.width * PIXELS, window->map.height * PIXELS, "Stones & Lava: Dungeon Escape");
+	window->mlx = mlx_init();
+	window->win = mlx_new_window(window->mlx, window->map.width * PX, \
+	window->map.height * PX, "Stones & Lava: Dungeon Escape");
 	init_imgs(window);
 }
 
@@ -42,22 +43,22 @@ int	key_press(int keycode, t_windows *window)
 	if (keycode == W)
 	{
 		window->map.last_key = 'w';
-		move(window, window->map.p_ypos - 1, window->map.p_xpos);
+		move(window, window->map.ply_y - 1, window->map.ply_x);
 	}
 	if (keycode == S)
 	{
 		window->map.last_key = 's';
-		move(window, window->map.p_ypos + 1, window->map.p_xpos);
+		move(window, window->map.ply_y + 1, window->map.ply_x);
 	}
 	if (keycode == A)
 	{
 		window->map.last_key = 'a';
-		move(window, window->map.p_ypos, window->map.p_xpos - 1);
+		move(window, window->map.ply_y, window->map.ply_x - 1);
 	}
 	if (keycode == D)
 	{
 		window->map.last_key = 'd';
-		move(window, window->map.p_ypos, window->map.p_xpos + 1);
+		move(window, window->map.ply_y, window->map.ply_x + 1);
 	}
 	return (0);
 }

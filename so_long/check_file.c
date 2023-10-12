@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_file.c                                    :+:      :+:    :+:   */
+/*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 22:57:27 by amak              #+#    #+#             */
-/*   Updated: 2023/09/19 21:01:24 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 03:17:26 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*	Check if the map file is an .ber extension file */
 int	map_ext_ok(char *filepath)
 {
 	int	size;
@@ -26,6 +27,7 @@ int	map_ext_ok(char *filepath)
 	return (0);
 }
 
+/* Checks if the program parameter is a valid map file */
 void	check_file(int argc, char **argv, int *fd)
 {
 	if (argc == 1)

@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:28:48 by amak              #+#    #+#             */
-/*   Updated: 2023/10/11 20:45:18 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 02:39:32 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ int	check_move(t_windows *window, int y, int x)
 	return (1);
 }
 
-void	exec_move(t_windows *window, int y, int x)
+void	exec_move(t_windows *win, int y, int x)
 {
-	window->map.mtrx[y][x] = 'P';
-	if (window->map.p_ypos == window->map.e_ypos && window->map.p_xpos == window->map.e_xpos)
-		window->map.mtrx[window->map.e_ypos][window->map.e_xpos] = 'E';
+	win->map.mtrx[y][x] = 'P';
+	if (win->map.ply_y == win->map.ext_y && win->map.ply_x == win->map.ext_x)
+		win->map.mtrx[win->map.ext_y][win->map.ext_x] = 'E';
 	else
-		window->map.mtrx[window->map.p_ypos][window->map.p_xpos] = '0';
-	window->map.p_ypos = y;
-	window->map.p_xpos = x;
-	window->map.count_moves++;
+		win->map.mtrx[win->map.ply_y][win->map.ply_x] = '0';
+	win->map.ply_y = y;
+	win->map.ply_x = x;
+	win->map.moves++;
 }
 
 void	move(t_windows *window, int y, int x)
@@ -65,7 +65,7 @@ void	move(t_windows *window, int y, int x)
 		exec_move(window, y, x);
 		build_map(window);
 		write(1, "Moves: ", 7);
-		put_posnbr(window->map.count_moves);
+		put_posnbr(window->map.moves);
 		write(1, "\n", 1);
 	}
 	if (check_move(window, y, x) == -1)

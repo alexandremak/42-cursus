@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:23:27 by amak              #+#    #+#             */
-/*   Updated: 2023/10/11 20:42:10 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 02:42:26 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,40 +32,40 @@
 # define D 100
 
 /* SIZE OF WINDOW AND EACH TILE*/
-# define PIXELS 32
+# define PX 32
 
 /* STRUCTURES */
 typedef struct s_map{
 	char	**mtrx;
-	int		p_xpos;
-	int		p_ypos;
+	int		ply_x;
+	int		ply_y;
 	char	last_key;
-	int		e_xpos;
-	int		e_ypos;
+	int		ext_x;
+	int		ext_y;
 	int		collects;
 	int		width;
 	int		height;
-	int		count_moves;
+	int		moves;
 }	t_map;
 
 typedef struct s_images{
-	void	*collect;
-	void	*exit;
-	void	*exit_open;
-	void	*player_s;
-	void	*player_w;
-	void	*player_a;
-	void	*player_d;
+	void	*cltb;
+	void	*e;
+	void	*eo;
+	void	*ps;
+	void	*pw;
+	void	*pa;
+	void	*pd;
 	void	*space;
 	void	*wall;
-	void	*player_exit;
+	void	*pe;
 }	t_images;
 
 typedef struct s_windows{
-	void		*mlx_ptr;
-	void		*win_ptr;
+	void		*mlx;
+	void		*win;
 	t_map		map;
-	t_images	images;
+	t_images	img;
 }	t_windows;
 
 /* LIBFT UTILITIES */
@@ -85,7 +85,7 @@ int		must_contain(t_windows *window);
 /* CHECK MAP DIMENSIONS */
 void	load_map(t_windows *window, int fd, int count_line);
 int		is_rectangle(t_windows *window);
-int		wall_ok(t_windows *window);
+int		wall_ok(t_map *map);
 int		valid_components(t_windows *window);
 void	check_map(int fd, t_windows *window);
 
@@ -100,7 +100,8 @@ void	init_mlx(t_windows *window);
 int		key_press(int keycode, t_windows *window);
 
 /* MAP BUILDER */
-void	insert_img(char c, int y, int x, t_windows *window);
+void	insert_player_img(int y, int x, t_windows *w);
+void	insert_img(char c, int y, int x, t_windows *w);
 void	build_map(t_windows *window);
 
 /* MOVING */

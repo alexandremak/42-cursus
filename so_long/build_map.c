@@ -6,42 +6,50 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:40:51 by amak              #+#    #+#             */
-/*   Updated: 2023/10/11 20:43:55 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 03:11:02 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	insert_img(char c, int x, int y, t_windows *win)
+/*	Checks the key pressed and prints the image of the player with that 
+	direction */
+void	insert_player_img(int y, int x, t_windows *w)
 {
-	if (c == 'C')
-		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.collect, x * PIXELS, y * PIXELS);
-	if (c == 'E')
-	{
-		if (win->map.collects == 0)
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.exit_open, x * PIXELS, y * PIXELS);
-		else
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.exit, x * PIXELS, y * PIXELS);
-	}
-	if (c == 'P')
-	{
-		if (win->map.p_ypos == win->map.e_ypos && win->map.p_xpos == win->map.e_xpos)
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_exit, x * PIXELS, y * PIXELS);
-		else if (win->map.last_key == 'w')
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_w, x * PIXELS, y * PIXELS);
-		else if (win->map.last_key == 'a')
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_a, x * PIXELS, y * PIXELS);
-		else if (win->map.last_key == 'd')
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_d, x * PIXELS, y * PIXELS);
-		else
-			mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.player_s, x * PIXELS, y * PIXELS);
-	}
-	if (c == '0')
-		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.space, x * PIXELS, y * PIXELS);
-	if (c == '1')
-		mlx_put_image_to_window(win->mlx_ptr, win->win_ptr, win->images.wall, x * PIXELS, y * PIXELS);
+	if (w->map.ply_y == w->map.ext_y && w->map.ply_x == w->map.ext_x)
+		mlx_put_image_to_window(w->mlx, w->win, w->img.pe, x * PX, y * PX);
+	else if (w->map.last_key == 'w')
+		mlx_put_image_to_window(w->mlx, w->win, w->img.pw, x * PX, y * PX);
+	else if (w->map.last_key == 'a')
+		mlx_put_image_to_window(w->mlx, w->win, w->img.pa, x * PX, y * PX);
+	else if (w->map.last_key == 'd')
+		mlx_put_image_to_window(w->mlx, w->win, w->img.pd, x * PX, y * PX);
+	else
+		mlx_put_image_to_window(w->mlx, w->win, w->img.ps, x * PX, y * PX);
 }
 
+/* 	Checks the char of the x/y position in the map and prints the image in the
+	windows */
+void	insert_img(char c, int x, int y, t_windows *w)
+{
+	if (c == 'C')
+		mlx_put_image_to_window(w->mlx, w->win, w->img.cltb, x * PX, y * PX);
+	if (c == 'E')
+	{
+		if (w->map.collects == 0)
+			mlx_put_image_to_window(w->mlx, w->win, w->img.eo, x * PX, y * PX);
+		else
+			mlx_put_image_to_window(w->mlx, w->win, w->img.e, x * PX, y * PX);
+	}
+	if (c == 'P')
+		insert_player_img(y, x, w);
+	if (c == '0')
+		mlx_put_image_to_window(w->mlx, w->win, w->img.space, x * PX, y * PX);
+	if (c == '1')
+		mlx_put_image_to_window(w->mlx, w->win, w->img.wall, x * PX, y * PX);
+}
+
+/*	Checks the map matrix and inserts the image of the correspondent char */
 void	build_map(t_windows *window)
 {
 	int	y;
