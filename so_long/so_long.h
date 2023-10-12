@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 21:23:27 by amak              #+#    #+#             */
-/*   Updated: 2023/10/12 02:42:26 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 22:20:27 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-
-# include <stdio.h>
 
 /* KEYBOARD CODES*/
 # define ESC 65307
@@ -113,7 +111,6 @@ void	move(t_windows *window, int y, int x);
 /* EXIT FUNCTIONS*/
 void	free_map(char **map);
 void	free_imgs(t_windows *window);
-int		free_all(t_windows *window);
 void	close_window(t_windows *window);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:31:32 by amak              #+#    #+#             */
-/*   Updated: 2023/10/12 03:27:38 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 22:42:28 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	wall_ok(t_map *map)
 	return (1);
 }
 
+/*	Check in a map if all the components are valid, after loading each 
+	components checks if all mandatory are loaded */
 int	valid_components(t_windows *window)
 {
 	int	x;
@@ -113,6 +115,7 @@ int	valid_components(t_windows *window)
 	return (1);
 }
 
+/*	This is the main function to validate a map loaded from file */
 void	check_map(int fd, t_windows *window)
 {
 	load_map(window, fd, 0);

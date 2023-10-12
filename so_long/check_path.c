@@ -6,12 +6,13 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 08:40:08 by amak              #+#    #+#             */
-/*   Updated: 2023/10/12 02:51:29 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 22:07:43 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* 	Creates a copy of a map */
 char	**mapcpy(t_windows *window)
 {
 	char	**dst;
@@ -30,6 +31,9 @@ char	**mapcpy(t_windows *window)
 	return (dst);
 }
 
+/*	The flood fill funtions will substitute all the space, collectable and exit
+	in a map for 'P', begining with the player position with all 4 adjacent
+	positions (up, down, left and right) */
 void	flood_fill(char **map, int y, int x)
 {
 	if (map[y][x] == 'F' || map[y][x] == '1')
@@ -43,6 +47,9 @@ void	flood_fill(char **map, int y, int x)
 	flood_fill(map, y, x - 1);
 }
 
+/*	After aplying flood fill if the map has a collectible or the exit char
+	it means that there is no valid path for the player to reach those
+	positions */
 void	check_path(t_windows *window)
 {
 	char	**copy_map;

@@ -6,12 +6,13 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 20:25:33 by amak              #+#    #+#             */
-/*   Updated: 2023/10/12 02:55:48 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 22:10:22 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* This functions frees a map from memory */
 void	free_map(char **map)
 {
 	int	i;
@@ -28,6 +29,7 @@ void	free_map(char **map)
 	}
 }
 
+/* This functions frees all pointers to images files */
 void	free_imgs(t_windows *window)
 {
 	if (window->img.cltb)
@@ -52,7 +54,8 @@ void	free_imgs(t_windows *window)
 		mlx_destroy_image(window->mlx, window->img.pe);
 }
 
-int	free_all(t_windows *window)
+/* This functions frees the game main structure and terminates the game */
+void	close_window(t_windows *window)
 {
 	if (window->map.mtrx)
 		free_map(window->map.mtrx);
@@ -64,11 +67,5 @@ int	free_all(t_windows *window)
 		mlx_destroy_display(window->mlx);
 		free(window->mlx);
 	}
-	return (1);
-}
-
-void	close_window(t_windows *window)
-{
-	free_all(window);
 	exit(1);
 }

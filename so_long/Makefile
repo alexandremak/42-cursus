@@ -6,7 +6,7 @@
 #    By: amak <amak@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/13 20:47:10 by amak              #+#    #+#              #
-#    Updated: 2023/10/12 02:59:24 by amak             ###   ########.fr        #
+#    Updated: 2023/10/12 22:31:18 by amak             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = cc -g
 
 CFLAGS = -Wall -Wextra -Werror
 
-LFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+LFLAGS = -Lminilibx-linux -I/minilibx-linux/mlx.h -L/usr/lib -lmlx -lXext -lX11 -lm -lz
 
 SOURCES = 	main.c \
 			ft_strchr.c \

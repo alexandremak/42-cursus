@@ -6,12 +6,13 @@
 /*   By: amak <amak@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 15:51:08 by amak              #+#    #+#             */
-/*   Updated: 2023/10/12 02:35:11 by amak             ###   ########.fr       */
+/*   Updated: 2023/10/12 22:18:40 by amak             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*	Intialize the game images pointer with the images files */
 void	init_imgs(t_windows *win)
 {
 	int		s;
@@ -28,6 +29,7 @@ void	init_imgs(t_windows *win)
 	win->img.pe = mlx_xpm_file_to_image(win->mlx, "img_pe.xpm", &s, &s);
 }
 
+/*	Intialize the mlx interface and creates the windows and images */
 void	init_mlx(t_windows *window)
 {
 	window->mlx = mlx_init();
@@ -36,6 +38,7 @@ void	init_mlx(t_windows *window)
 	init_imgs(window);
 }
 
+/*	Check what keyboard key is pressed and executes movement if possible */
 int	key_press(int keycode, t_windows *window)
 {
 	if (keycode == ESC)
